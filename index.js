@@ -1,33 +1,29 @@
 (function() {
   const myQuestions = [
     {
-      question: "Who is the strongest?",
-      answers: {
-        a: "Superman",
-        b: "The Terminator",
-        c: "Waluigi, obviously"
+      questionType: "cupBalls",
+      question: "Place balls in cups so that all amounts are equal.",
+      balls: [{
+        id: 1,
+        value: 2
       },
-      correctAnswer: "c"
+      {
+        id: 2,
+        value: 5
+      },
+      {
+        id: 3,
+        value: 3
+      },
+    ],
+      cups: 3
     },
-    {
-      question: "What is the best site ever created?",
-      answers: {
-        a: "SitePoint",
-        b: "Simple Steps Code",
-        c: "Trick question; they're both the best"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "Where is Waldo really?",
-      answers: {
-        a: "Antarctica",
-        b: "Exploring the Pacific Ocean",
-        c: "Sitting in a tree",
-        d: "Minding his own business, so stop asking"
-      },
-      correctAnswer: "d"
-    }
+    // {
+    //   questionType: "cupBalls",
+    //   question: "Place balls in cups so that all amounts are equal.",
+    //   balls: [2, 5, 1, 4, 3],
+    //   cups: 3
+    // },
   ];
 
   function buildQuiz() {
@@ -36,26 +32,19 @@
 
     // for each question...
     myQuestions.forEach((currentQuestion, questionNumber) => {
+      
       // we'll want to store the list of answer choices
-      const answers = [];
-
-      // and for each available answer...
-      for (letter in currentQuestion.answers) {
-        // ...add an HTML radio button
-        answers.push(
-          `<label>
-             <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
-           </label>`
-        );
-      }
 
       // add this question and its answers to the output
       output.push(
         `<div class="slide">
            <div class="question"> ${currentQuestion.question} </div>
-           <div class="answers"> ${answers.join("")} </div>
+           <div id="basket">
+           ${currentQuestion.balls.forEach(ball => {
+            `<div>${ball.id}</div>`
+             console.log(`ball id: ${ball.id}, ball value: ${ball.value}`)
+          })}
+           </div>
          </div>`
       );
     });
@@ -143,3 +132,7 @@
   previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
 })();
+
+// ${currentQuestion.balls.forEach(ball => {
+//   `<div id="${"cup" + ball.id}" class="ball" draggable="true" data-value="${ball.value} ondragstart="dragBall(event)">${ball.value}</div>`
+// })}

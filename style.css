@@ -66,3 +66,23 @@ button:hover{
   height: 200px;
   margin-top: 40px;
 }
+
+
+
+
+
+#basket {
+  text-align: center;
+  background-color: rgb(0, 112, 79);
+  width: 12em;
+}
+
+.ball {
+  background-color: rgb(255, 122, 45);
+  border-radius: 50%;
+  font-size: 20px;
+  width: 1.5em;
+  margin: .5em;
+  text-align: center;
+  display: inline-block;
+}
