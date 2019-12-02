@@ -1,52 +1,45 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body{
     font-size: 20px;
     font-family: 'Work Sans', sans-serif;
     color: #333;
-  font-weight: 300;
-  text-align: center;
-  background-color: #f8f6f0;
+    font-weight: 300;
+    text-align: center;
+    background-color: #f8f6f0;
 }
 h1{
   font-weight: 300;
   margin: 0px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 28px;
   background-color: #444;
   color: #fff;
 }
 .question{
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-.answers {
-  margin-bottom: 20px;
-  text-align: left;
-  display: inline-block;
-}
-.answers label{
-  display: block;
+  font-size: 24px;
   margin-bottom: 10px;
 }
 button{
   font-family: 'Work Sans', sans-serif;
-    font-size: 22px;
-    background-color: #279;
-    color: #fff;
-    border: 0px;
-    border-radius: 3px;
-    padding: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
+	font-size: 22px;
+	background-color: #c62828;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 8em;
 }
 button:hover{
-    background-color: #38a;
+	background-color: #8e0000;
 }
-
-
-
-
 
 .slide{
   position: absolute;
@@ -67,22 +60,34 @@ button:hover{
   margin-top: 40px;
 }
 
-
-
-
-
 #basket {
-  text-align: center;
+  /* margin: 2em 2em 2em 2em; */
   background-color: rgb(0, 112, 79);
-  width: 12em;
+  max-width: 10em;
 }
 
 .ball {
   background-color: rgb(255, 122, 45);
   border-radius: 50%;
-  font-size: 20px;
-  width: 1.5em;
+  font-size: 22px;
+  width: 1.25em;
   margin: .5em;
-  text-align: center;
   display: inline-block;
+}
+
+.cup {
+  text-align: center;
+  background-color: rgb(116, 116, 116);
+  width: 8em;
+  border: 1px solid black;
+  height: 10em;
+  margin: 1em;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 1em;
 }
