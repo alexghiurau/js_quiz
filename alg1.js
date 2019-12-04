@@ -14,7 +14,7 @@ const emSupStatements = {
     "I understand that you may be upset."
   ],
   R: [
-    "Everyone is wrong sometimes;",
+    "Everyone is wrong sometimes.",
     "Everyone finds this hard.",
     "You will get the hang of it eventually."
   ],
@@ -78,7 +78,7 @@ function getFeedback(score, emStab, consci) {
       }
     });
   });
-  createFeedbackString(feedbackArr);
+  return createFeedbackString(feedbackArr);
 }
 
 function createFeedbackString(feedbackArr) {
@@ -87,5 +87,5 @@ function createFeedbackString(feedbackArr) {
   arrNoDuplicates.forEach(sentence => {
     feedbackString += sentence + " ";
   });
-  console.log(feedbackString);
+  return feedbackString;
 }

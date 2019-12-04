@@ -40,7 +40,26 @@
           value: 5
         }
       ],
-      cups: [4, 5, 6]
+      cups: [1, 2, 3]
+    },
+    {
+      questionType: "cupBalls",
+      question: "Place balls in cups so that all amounts are equal.",
+      balls: [
+        {
+          id: 8,
+          value: 4
+        },
+        {
+          id: 9,
+          value: 2
+        },
+        {
+          id: 10,
+          value: 2
+        }
+      ],
+      cups: [1, 2]
     }
   ];
 
@@ -48,7 +67,7 @@
     const output = [];
     // for each question...
     myQuestions.forEach((currentQuestion, questionNumber) => {
-      // add balls
+      // create a slide
       output.push(
         `<div class="slide">
            <div class="question">${questionNumber + 1}. ${
@@ -71,7 +90,7 @@
              .map(
                (cup, i) => `
             <div id="${"cup" +
-              cup}" class="cup" data-value="${cup}" ondrop="dropBallOnCup(event)" onDragOver="allowDrop(event)"></div>`
+              cup}" class="cup" data-value="${i}" ondrop="dropBallOnCup(event)" onDragOver="allowDrop(event)"></div>`
              )
              .join("")}
              </div>
@@ -82,50 +101,51 @@
     quizContainer.innerHTML = output.join("");
   }
 
+  // shows results when Submit is clicked
   function showResults() {
+    let numCorrect = 0;
 
     let slides = quizContainer.querySelectorAll("div.slide");
     slides.forEach(slide => {
       let cups = slide.querySelectorAll("div.horizontal > div.cup");
+
       let answers = [];
       for (let i = 0; i < cups.length; i++) {
         answers[i] = [];
       }
 
-      cups.forEach(cup =>{
-        let balls = cup.querySelectorAll("div.ball");
-      });
-      // console.log(answers);
+      cups.forEach(cup =>
+        cup.childNodes.forEach(ball => {
+          for (let i = 0; i < cups.length; i++) {
+            if (i == cup.dataset.value) {
+              answers[i].push(parseInt(ball.dataset.value, 10));
+            }
+          }
+        })
+      );
+      console.log(answers);
+
+      let calculatedAnswers = answers
+        .map(x => x.reduce((p, n) => p + n, 0))
+        .every((x, n, a) => a[n] === a[0]);
+      if (calculatedAnswers) {
+        numCorrect += 1;
+      }
     });
 
-    // keep track of user's answers
-    let numCorrect = 0;
+    // show number of correct answers out of total and get feedback
+    let percent = (numCorrect / myQuestions.length) * 100;
+    let rounded_number = Math.round(percent * 100) / 100
+    resultsContainer.innerHTML = `You scored ${numCorrect} out of ${
+      myQuestions.length
+    } (${rounded_number}%)`;
 
-    // // for each question...
-    // myQuestions.forEach((currentQuestion, questionNumber) => {
-    //   // find selected answer
-    //   const answerContainer = answerContainers[questionNumber];
-    //   const selector = `input[name=question${questionNumber}]:checked`;
-    //   const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-    //   // if answer is correct
-    //   if (userAnswer === currentQuestion.correctAnswer) {
-    //     // add to the number of correct answers
-    //     numCorrect++;
-
-    //     // color the answers green
-    //     answerContainers[questionNumber].style.color = "lightgreen";
-    //   } else {
-    //     // if answer is wrong or blank
-    //     // color the answers red
-    //     answerContainers[questionNumber].style.color = "red";
-    //   }
-    // });
-
-    // show number of correct answers out of total
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    // get feedback from alg1.js and put on page
+    let feedback = getFeedback(30, "low", "low");
+    feedbackContainer.innerHTML = feedback;
   }
 
+  // shows a slide with a question from the set
   function showSlide(n) {
     slides[currentSlide].classList.remove("active-slide");
     slides[n].classList.add("active-slide");
@@ -156,6 +176,7 @@
 
   const quizContainer = document.getElementById("quiz");
   const resultsContainer = document.getElementById("results");
+  const feedbackContainer = document.getElementById("feedback");
   const submitButton = document.getElementById("submit");
 
   // display quiz right away
@@ -174,6 +195,7 @@
   nextButton.addEventListener("click", showNextSlide);
 })();
 
+// allow dropping onto elements
 function allowDrop(ev) {
   ev.preventDefault();
   if (ev.target.getAttribute("draggable") == "true")
@@ -181,10 +203,12 @@ function allowDrop(ev) {
   else ev.dataTransfer.dropEffect = "all";
 }
 
+// allow dragging a ball, getting its id
 function dragBall(ev) {
   ev.dataTransfer.setData("ballId", ev.target.id);
 }
 
+// allow dropping a ball onto a cup element
 function dropBallOnCup(ev) {
   ev.preventDefault();
   const ballId = ev.dataTransfer.getData("ballId");
@@ -192,12 +216,3 @@ function dropBallOnCup(ev) {
   let ballElement = document.getElementById(ballId);
   cup.appendChild(ballElement);
 }
-
-// ${currentQuestion.balls.forEach(ball => {
-//   `<div id="${"cup" + ball.id}" class="ball" draggable="true" data-value="${ball.value} ondragstart="dragBall(event)">${ball.value}</div>`
-// })}
-
-// ${currentQuestion.balls.forEach(ball => {
-//   `<div>${ball.id, ball.value}</div>` // this doesn't werk
-//   //  console.log(`ball id: ${ball.id}, ball value: ${ball.value}`) // this just werks
-// })}
