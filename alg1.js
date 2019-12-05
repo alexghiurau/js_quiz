@@ -25,10 +25,19 @@ const emSupStatements = {
   ]
 };
 
+function handleScore(score) {
+  let roundedScore;
+
+  if (score < 15) {roundedScore = 10}
+  else if (score < 40) {roundedScore = 30}
+  else if (score >= 40 && score < 50) {roundedScore = 45}
+  else if (score >= 50 && score <= 65) {roundedScore = 55}
+}
+
 function getFeedback(score, emStab, consci) {
   let slant;
   let ES;
-
+// func(score) {}
   switch (score) {
     case 10:
       slant = "neutral";
