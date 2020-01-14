@@ -39,7 +39,7 @@ function handleScore(score) {
     roundedScore = 55;
   } else if (score >= 65 && score <= 70) {
     roundedScore = 70;
-  } else if (score > 70 && score < 80 ) {
+  } else if (score > 70 && score < 80) {
     roundedScore = 70;
   } else if (score >= 80) {
     roundedScore = 90;

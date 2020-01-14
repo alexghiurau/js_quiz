@@ -1,8 +1,9 @@
 (function() {
-  if (localStorage.getItem("emStab") === null || localStorage.getItem("consci") === null) {
-    $('#personalityModal').modal();
+  let emStab = localStorage.getItem("emStab");
+  let consci = localStorage.getItem("consci");
+  if (emStab === null || consci === null) {
+    $("#personalityModal").modal();
   }
-  // $('#personalityModal').modal();
   console.log(localStorage.getItem("emStab"));
   console.log(localStorage.getItem("consci"));
   const myQuestions = [
@@ -76,9 +77,9 @@
       // create a slide
       output.push(
         `<div class="slide">
-           <div class="question">${questionNumber + 1}. ${
-          currentQuestion.question
-        } </div>
+           <div class="question">${questionNumber + 1} of ${
+          myQuestions.length
+        }. ${currentQuestion.question} </div>
            <div class="horizontal">
            <div id="basket">
             ${currentQuestion.balls
@@ -107,47 +108,83 @@
     quizContainer.innerHTML = output.join("");
   }
 
+  function checkCurrentSlide() {
+    let check = false;
+    let slide = quizContainer.querySelector("div.active-slide");
+    let cups = slide.querySelectorAll("div.horizontal > div.cup");
+
+    let answers = [];
+    for (let i = 0; i < cups.length; i++) {
+      answers[i] = [];
+    }
+
+    cups.forEach(cup =>
+      cup.childNodes.forEach(ball => {
+        for (let i = 0; i < cups.length; i++) {
+          if (i == cup.dataset.value) {
+            answers[i].push(parseInt(ball.dataset.value, 10));
+          }
+        }
+      })
+    );
+    answers.forEach(answer => {
+      answer.length == 0 ? (check = false) : (check = true);
+    });
+    return check;
+  }
+
   // shows results when Submit is clicked
   function showResults() {
-    let numCorrect = 0;
+    let check = checkCurrentSlide();
+    if (check) {
+      let numCorrect = 0;
 
-    let slides = quizContainer.querySelectorAll("div.slide");
-    slides.forEach(slide => {
-      let cups = slide.querySelectorAll("div.horizontal > div.cup");
+      let slides = quizContainer.querySelectorAll("div.slide");
+      slides.forEach(slide => {
+        let cups = slide.querySelectorAll("div.horizontal > div.cup");
 
-      let answers = [];
-      for (let i = 0; i < cups.length; i++) {
-        answers[i] = [];
-      }
+        let answers = [];
+        for (let i = 0; i < cups.length; i++) {
+          answers[i] = [];
+        }
 
-      cups.forEach(cup =>
-        cup.childNodes.forEach(ball => {
-          for (let i = 0; i < cups.length; i++) {
-            if (i == cup.dataset.value) {
-              answers[i].push(parseInt(ball.dataset.value, 10));
+        cups.forEach(cup =>
+          cup.childNodes.forEach(ball => {
+            for (let i = 0; i < cups.length; i++) {
+              if (i == cup.dataset.value) {
+                answers[i].push(parseInt(ball.dataset.value, 10));
+              }
             }
-          }
-        })
+          })
+        );
+        console.log(answers);
+
+        let calculatedAnswers = answers
+          .map(x => x.reduce((p, n) => p + n, 0))
+          .every((x, n, a) => a[n] === a[0]);
+        if (calculatedAnswers) {
+          numCorrect += 1;
+        }
+      });
+
+      console.log(numCorrect);
+      // show number of correct answers out of total and get feedback
+      let percent = (numCorrect / myQuestions.length) * 100;
+      let rounded_number = Math.round(percent * 100) / 100;
+      resultsContainer.innerHTML = `You scored ${numCorrect} out of ${myQuestions.length} (${rounded_number}%)`;
+
+      // get feedback from alg1.js and put on page
+      let feedback = getFeedback(
+        rounded_number,
+        localStorage.getItem("emStab"),
+        localStorage.getItem("consci")
       );
-      console.log(answers);
-
-      let calculatedAnswers = answers
-        .map(x => x.reduce((p, n) => p + n, 0))
-        .every((x, n, a) => a[n] === a[0]);
-      if (calculatedAnswers) {
-        numCorrect += 1;
-      }
-    });
-
-    console.log(numCorrect);
-    // show number of correct answers out of total and get feedback
-    let percent = (numCorrect / myQuestions.length) * 100;
-    let rounded_number = Math.round(percent * 100) / 100;
-    resultsContainer.innerHTML = `You scored ${numCorrect} out of ${myQuestions.length} (${rounded_number}%)`;
-
-    // get feedback from alg1.js and put on page
-    let feedback = getFeedback(rounded_number, localStorage.getItem("emStab"), localStorage.getItem("consci"));
-    feedbackContainer.innerHTML = feedback;
+      feedbackContainer.innerHTML = feedback;
+      $("#submit").prop("disabled", true);
+      $("#previous").prop("disabled", true);
+    } else {
+      $("#errorModal").modal();
+    }
   }
 
   // shows a slide with a question from the set  s
@@ -172,7 +209,12 @@
   }
 
   function showNextSlide() {
-    showSlide(currentSlide + 1);
+    let check = checkCurrentSlide();
+    if (check) {
+      showSlide(currentSlide + 1);
+    } else {
+      $("#errorModal").modal();
+    }
   }
 
   function showPreviousSlide() {
@@ -201,11 +243,11 @@
 })();
 
 function handlePersonality() {
-    let emStab = $("#emStabCombo :selected").val();
-    let consci = $("#consciCombo :selected").val();
+  let emStab = $("#emStabCombo :selected").val();
+  let consci = $("#consciCombo :selected").val();
 
-    localStorage.setItem("emStab", emStab);
-    localStorage.setItem("consci", consci);
+  localStorage.setItem("emStab", emStab);
+  localStorage.setItem("consci", consci);
 }
 
 // allow dropping onto elements
