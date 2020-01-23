@@ -1,11 +1,12 @@
 (function() {
-  let emStab = localStorage.getItem("emStab");
-  let consci = localStorage.getItem("consci");
+  let emStab = sessionStorage.getItem("emStab");
+  let consci = sessionStorage.getItem("consci");
+ 
   if (emStab === null || consci === null) {
     $("#personalityModal").modal();
   }
-  console.log(localStorage.getItem("emStab"));
-  console.log(localStorage.getItem("consci"));
+  console.log(sessionStorage.getItem("emStab"));
+  console.log(sessionStorage.getItem("consci"));
   const myQuestions = [
     {
       questionType: "cupBalls",
@@ -176,12 +177,20 @@
       // get feedback from alg1.js and put on page
       let feedback = getFeedback(
         rounded_number,
-        localStorage.getItem("emStab"),
-        localStorage.getItem("consci")
+        sessionStorage.getItem("emStab"),
+        sessionStorage.getItem("consci")
       );
+      let results = {
+        score: rounded_number,
+        feedback,
+      }
+
+      console.log(results);
+
       feedbackContainer.innerHTML = feedback;
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
+      $("#submit").addClass("button-finished");
     } else {
       $("#errorModal").modal();
     }
@@ -246,8 +255,8 @@ function handlePersonality() {
   let emStab = $("#emStabCombo :selected").val();
   let consci = $("#consciCombo :selected").val();
 
-  localStorage.setItem("emStab", emStab);
-  localStorage.setItem("consci", consci);
+  sessionStorage.setItem("emStab", emStab);
+  sessionStorage.setItem("consci", consci);
 }
 
 // allow dropping onto elements

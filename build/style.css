@@ -40,6 +40,9 @@ h1{
 .button-custom:hover{
 	background-color: #8e0000;
 }
+.button-finished {
+  background-color: #8e0000;
+}
 
 .slide{
   position: absolute;
