@@ -1,9 +1,8 @@
 const express = require("express");
-
-const fetch = require("node-fetch");
-require("dotenv").config();
+const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
+
 
 // logging
 app.use("/", (req, res, next) => {
@@ -11,22 +10,25 @@ app.use("/", (req, res, next) => {
   next();
 });
 
-// static files
-app.use(
-  "/",
-  express.static("build", {
-    extensions: ["html"]
-  })
-);
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
 
-//   SERVER API
-//
-//   GET  /api/X            - gets something
+// Routes
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
-// app.get("/api/X", someFunction);
+// Static files
+// app.use(
+//   "/",
+//   express.static("build", {
+//     extensions: ["html"]
+//   })
+// );
 
-// const PORT = process.env.PORT;
-const PORT = 8080;
+
+// Declare port and start server
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, err => {
   err
@@ -34,27 +36,8 @@ app.listen(PORT, err => {
     : console.log(`Server running on port ${PORT}.`);
 });
 
-// SERVER FUNCTIONS
 
-// async function getSeniorulData(req, res) {
-//   const api_key = process.env.API_KEY;
-//   const regions = ["euw1", "eun1"];
-//   try {
-//     await fetch(
-//       `https://${
-//         regions[1]
-//       }.api.riotgames.com/lol/league/v4/entries/by-summoner/gOIXNpZ7P_NOl2BR5iqvD9zMFm0ZMI0xO3D0Ht14g8x2E8I?api_key=${api_key}`
-//     )
-//       .then(res => res.json())
-//       .then(data =>
-//         res.send(data.sort((a, b) => a.queueType.localeCompare(b.queueType)))
-//       );
-//   } catch (e) {
-//     error(res, e);
-//   }
-// }
-
-// for sending error codes
+// For sending error codes
 function error(res, err) {
   res.sendStatus(500);
   console.error(err);
