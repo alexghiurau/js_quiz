@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -33,7 +34,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 // Static middleware TO DO
-app.use(express.static(__dirname + '/assets'));
+app.use(express.static(`${__dirname}/assets`));
 
 // Express session
 app.use(
