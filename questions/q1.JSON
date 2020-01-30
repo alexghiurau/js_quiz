@@ -1,0 +1,5 @@
+{
+    "Question": "Place balls in cups so that all amounts are equal.",
+    "balls": [2, 2, 4],
+    "cups": 2
+}
