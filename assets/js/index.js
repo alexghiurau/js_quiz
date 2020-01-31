@@ -36,9 +36,8 @@
       }
 
       // handle balls / balls ids
-      const getUniqueId = (i => () => i++)(0);
       const arrOfBalls = currentQuestion.balls.map(value => ({
-        id: Math.floor(Math.random() * 100000),
+        id: Math.floor(Math.random() * 1000000),
         value
       }));
 
@@ -132,7 +131,6 @@
       resultsContainer.innerHTML = `You scored ${numCorrect} out of ${questions.length} (${rounded_number}%)`;
 
       // get feedback from alg1.js and put on page
-
       feedbackContainer.innerHTML = getFeedback(
         rounded_number,
         sessionStorage.getItem("emStab"),
@@ -146,7 +144,7 @@
     }
   }
 
-  // shows a slide with a question from the set  s
+  // shows a slide with a question from the set
   function showSlide(n) {
     slides[currentSlide].classList.remove("active-slide");
     slides[n].classList.add("active-slide");
