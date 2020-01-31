@@ -1,5 +1,17 @@
-{
-    "Question": "Place balls in cups so that all amounts are equal.",
-    "balls": [2, 2, 4],
+[
+  {
+    "question": "Place balls in cups so that all amounts are equal.",
+    "balls": [5, 2, 3],
     "cups": 2
-}
+  },
+  {
+    "question": "Place balls in cups so that all amounts are equal.",
+    "balls": [10, 10, 5, 5],
+    "cups": 3
+  },
+  {
+    "question": "Place balls in cups so that all amounts are equal.",
+    "balls": [4, 2, 2],
+    "cups": 2
+  }
+]
