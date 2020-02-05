@@ -1,4 +1,5 @@
-(function () {
+(async function () {
+
   const emStab = sessionStorage.getItem('emStab');
   const consci = sessionStorage.getItem('consci');
 
@@ -6,45 +7,18 @@
     $('#personalityModal').modal();
   }
 
-  async function getData(url) {
-    const response = await fetch(url);
-    return response.json();
-  }
 
-  async function main() {
-    const url = '/questions';
-    const data = await getData(url);
-    console.log(data);
-  }
-
-  main();
-
-  // questions = main();
-  // console.log(questions);
-
-  const questions = [
-    {
-      question: 'Place balls in cups so that all amounts are equal.',
-      balls: [5, 2, 3],
-      cups: 2,
-    },
-    {
-      question: 'Place balls in cups so that all amounts are equal.',
-      balls: [10, 10, 5, 5],
-      cups: 3,
-    },
-    {
-      question: 'Place balls in cups so that all amounts are equal.',
-      balls: [4, 2, 2],
-      cups: 2,
-    },
-  ];
+  const url = '/questions';
+  const questions = await fetch(url).then(res => res.json()).then(data => {
+    return data;
+  });
 
   function buildQuiz() {
     const output = [];
 
     // for each question...
     questions.forEach((currentQuestion, questionNumber) => {
+      
       // handle cups ids
       const cupIdArr = [];
       for (let i = 1; i <= currentQuestion.cups; i++) {
@@ -241,3 +215,19 @@ function dropBallOnCup(ev) {
   const ballElement = document.getElementById(ballId);
   cup.appendChild(ballElement);
 }
+
+// INCLUDE IN IMPLEMENTATION PROBLEMS
+
+// async function getData(url) {
+//   const response = await fetch(url);
+//   return response.json();
+// }
+
+// async function main() {
+//   const url = '/questions';
+//   const data = await getData(url)
+//   data.then(retVal => {
+//     return retVal;
+//   });
+  
+// }

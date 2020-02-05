@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Question = require('../models/Question');
 
-// smh tbh famalamadingdong
+// get questions from mongodb
 
 router.get('/', async (req, res) => {
   try {

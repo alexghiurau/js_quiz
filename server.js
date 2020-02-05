@@ -7,7 +7,6 @@ const session = require('express-session');
 const passport = require('passport');
 const fetch = require("node-fetch");
 const fs = require('fs');
-const axios = require('axios');
 
 
 const app = express();
