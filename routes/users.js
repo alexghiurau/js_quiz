@@ -43,44 +43,46 @@ router.post("/register", (req, res) => {
     });
   } else {
     // Validation passed
-    User.findOne({ email }).then(user => {
-      if (user) {
-        // user already exists
-        errors.push({ msg: "Email is already registered." });
-        res.render("register", {
-          errors,
-          name,
-          email,
-          password,
-          password2
-        });
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password
-        });
-        // encrypt password
-        bcrypt.genSalt(10, (err, salt) =>
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            // Set password to encrypted
-            newUser.password = hash;
-            // Save user
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  "success_msg",
-                  "You are now registered and can log in."
-                );
-                res.redirect("/users/login");
-              })
-              .catch(err => console.log(err));
-          })
-        );
-      }
-    });
+    User.findOne({ email })
+      .then(user => {
+        if (user) {
+          // user already exists
+          errors.push({ msg: "Email is already registered." });
+          res.render("register", {
+            errors,
+            name,
+            email,
+            password,
+            password2
+          });
+        } else {
+          const newUser = new User({
+            name,
+            email,
+            password
+          });
+          // encrypt password
+          bcrypt.genSalt(10, (err, salt) =>
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              // Set password to encrypted
+              newUser.password = hash;
+              // Save user
+              newUser
+                .save()
+                .then(user => {
+                  req.flash(
+                    "success_msg",
+                    "You are now registered and can log in."
+                  );
+                  res.redirect("/users/login");
+                })
+                .catch(err => console.log(err));
+            })
+          );
+        }
+      })
+      .catch(err => console.log(err));
   }
 });
 
