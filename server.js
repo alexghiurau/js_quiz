@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const fetch = require("node-fetch");
+const fs = require('fs');
+const axios = require('axios');
 
 
 const app = express();
@@ -65,6 +67,13 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/questions', require('./routes/questions'));
+
+// app.get('/questions', async (req, res) => {
+//   fs.readFile('./questions/q1.json', (err, json) => {
+//     let obj = JSON.parse(json);
+//     res.json(obj);
+// })});
 
 // Declare port and start server
 const PORT = process.env.PORT || 5000;
