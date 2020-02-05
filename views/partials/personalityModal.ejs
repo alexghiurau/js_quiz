@@ -1,0 +1,227 @@
+<!-- Personality Modal -->
+<!-- REMEMBER TO TRY TO SHORTEN THIS USING EJS OBJECT FOREACH -->
+<div
+  class="modal fade bd-example-modal-lg"
+  id="personalityModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Hi, <%= name %>. Tell me a bit about yourself.
+        </h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+      </div>
+      <div class="modal-body">
+        <p>
+          Here are a number of personality traits that may or may not apply to
+          you. Please write a number next to each statement to indicate the
+          extent to which you agree or disagree with that statement. You should
+          rate the extent to which the pair of traits applies to you, even if
+          one characteristic applies more strongly than the other.
+        </p>
+        <form>
+          <!-- 1 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Extraverted, enthusiastic</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="extravertedSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 2 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Critical, quarrelsome</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="criticalSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 3 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Dependable, self-disciplined</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="dependableSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 4 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Anxious, easily upset</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="anxiousSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 5 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Open to new experiences, complex</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="openToExperiencesSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 6 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Reserved, quiet</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="reservedSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <br />
+          <!-- 7 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Sympathetic, warm</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="sympatheticSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 8 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Disorganized, careless</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="disorganizedSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 9 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Calm, emotionally stable</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="calmSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <!-- 10 -->
+          <div class="form-group row">
+            <label
+              for="exampleFormControlSelect1"
+              class="col-sm-2 col-form-label"
+              >Conventional, uncreative</label
+            >
+            <div class="col-sm-10">
+              <select class="form-control" id="conventionalSelect">
+                <option selected disabled
+                  >Select a value (1 lowest - 7 highest)</option
+                >
+                <% for(let i = 1; i <= 7; i++) { %>
+                <option><%= i %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          onClick="handlePersonality()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

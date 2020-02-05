@@ -2,89 +2,46 @@
 <p class="lead mb-3">Welcome <%= name %></p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a> -->
 
+<link rel="stylesheet" href="/css/style.css" />
 
-    <link rel="stylesheet" href="/css/style.css">
-  <%- include('./partials/navbar.ejs'); %>
+<!-- include the navbar partial -->
+<%- include('./partials/navbar.ejs'); %>
 
+<div class="quiz-container">
+  <div id="quiz"></div>
+</div>
 
-  <div class="quiz-container">
-    <div id="quiz"></div>
-  </div>
+<div class="button-container">
   <button class="button-custom" id="previous">Previous Question</button>
   <button class="button-custom" id="next">Next Question</button>
   <button class="button-custom" id="submit">Submit Quiz</button>
-  <div id="results"></div>
-  <div id="feedback"></div>
+</div>
 
-  <!-- Personality Modal -->
-  <div class="modal fade" id="personalityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Hi, <%= name %> .Tell me a bit about yourself</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+<div id="results"></div>
+<div id="feedback"></div>
 
-          <label for="emStabCombo">Emotional Stability</label>
-          <select name="emStabCombo" id="emStabCombo">
-            <option value="low">Low</option>
-            <option value="high">High</option>
-          </select>
-          <br>
-          <label for="consciCombo">Conscientiousness</label>
-          <select name="consciCombo" id="consciCombo">
-            <option value="low">Low</option>
-            <option value="high">High</option>
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="handlePersonality()">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- include personality modal -->
+<%- include('./partials/personalityModal.ejs'); %>
 
-  <!-- Error Modal -->
-  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Check your answers!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          You must place at least one ball in each cup.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- include quiz error modal -->
+<%- include('./partials/quizErrorModal.ejs'); %>
 
-  <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
 
-  <script src="/js/index.js"></script>
-  <!-- Use Algorithm 1 (hard coded) -->
-  <script src="/js/alg1.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/alg1.js"></script>
+<script src="/js/tipi.js"></script>
