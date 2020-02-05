@@ -1,22 +1,20 @@
-(async function() {
+(async function () {
   // const emStab = sessionStorage.getItem('emStab');
   // const consci = sessionStorage.getItem('consci');
 
-  const emStab = "low";
-  const consci = "low";
+  const emStab = 'low';
+  const consci = 'low';
 
   if (emStab === null || consci === null) {
-    $("#personalityModal").modal();
+    $('#personalityModal').modal();
   }
 
   // get questions from mongodb
-  const url = "/questions";
+  const url = '/questions';
   const questions = await fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      return data;
-    })
-    .catch(err => console.log(err));
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => console.log(err));
 
   function buildQuiz() {
     const output = [];
@@ -30,42 +28,42 @@
       }
 
       // handle balls / balls ids
-      const arrOfBalls = currentQuestion.balls.map(value => ({
+      const arrOfBalls = currentQuestion.balls.map((value) => ({
         id: Math.floor(Math.random() * 1000000),
-        value
+        value,
       }));
 
       // create a slide
       output.push(
         `<div class="slide">
            <div class="question">${questionNumber + 1} of ${
-          questions.length
-        }. ${currentQuestion.question} </div>
+    questions.length
+  }. ${currentQuestion.question} </div>
            <div class="horizontal">
            <div id="basket">
             ${arrOfBalls
-              .map(
-                (ball, i) => `
+    .map(
+      (ball, i) => `
             <div id="${`ball${ball.id}`}" class="ball" data-value="${
-                  ball.value
-                }" draggable="true" ondragstart="dragBall(event)">${
-                  ball.value
-                }</div>`
-              )
-              .join("")}
+    ball.value
+  }" draggable="true" ondragstart="dragBall(event)">${
+    ball.value
+  }</div>`,
+    )
+    .join('')}
            </div>
            ${cupIdArr
-             .map(
-               (cup, i) => `
-            <div id="${`cup${cup}`}" class="cup" data-value="${i}" ondrop="dropBallOnCup(event)" onDragOver="allowDrop(event)"></div>`
-             )
-             .join("")}
+    .map(
+      (cup, i) => `
+            <div id="${`cup${cup}`}" class="cup" data-value="${i}" ondrop="dropBallOnCup(event)" onDragOver="allowDrop(event)"></div>`,
+    )
+    .join('')}
              </div>
-         </div>`
+         </div>`,
       );
     });
     // add everything to page
-    quizContainer.innerHTML = output.join("");
+    quizContainer.innerHTML = output.join('');
   }
 
   function createAnwersStore(cups) {
@@ -74,26 +72,24 @@
       answers[i] = [];
     }
 
-    cups.forEach(cup =>
-      cup.childNodes.forEach(ball => {
-        for (let i = 0; i < cups.length; i++) {
-          if (i == cup.dataset.value) {
-            answers[i].push(parseInt(ball.dataset.value, 10));
-          }
+    cups.forEach((cup) => cup.childNodes.forEach((ball) => {
+      for (let i = 0; i < cups.length; i++) {
+        if (i == cup.dataset.value) {
+          answers[i].push(parseInt(ball.dataset.value, 10));
         }
-      })
-    );
+      }
+    }));
     return answers;
   }
 
   function checkCurrentSlide() {
     let check = false;
-    const slide = quizContainer.querySelector("div.active-slide");
-    const cups = slide.querySelectorAll("div.horizontal > div.cup");
+    const slide = quizContainer.querySelector('div.active-slide');
+    const cups = slide.querySelectorAll('div.horizontal > div.cup');
 
     const answers = createAnwersStore(cups);
 
-    answers.forEach(answer => {
+    answers.forEach((answer) => {
       answer.length == 0 ? (check = false) : (check = true);
     });
     return check;
@@ -105,14 +101,14 @@
     if (check) {
       let numCorrect = 0;
 
-      const slides = quizContainer.querySelectorAll("div.slide");
-      slides.forEach(slide => {
-        const cups = slide.querySelectorAll("div.horizontal > div.cup");
+      const slides = quizContainer.querySelectorAll('div.slide');
+      slides.forEach((slide) => {
+        const cups = slide.querySelectorAll('div.horizontal > div.cup');
 
         const answers = createAnwersStore(cups);
 
         const calculatedAnswers = answers
-          .map(x => x.reduce((p, n) => p + n, 0))
+          .map((x) => x.reduce((p, n) => p + n, 0))
           .every((x, n, a) => a[n] === a[0]);
         if (calculatedAnswers) {
           numCorrect += 1;
@@ -127,35 +123,35 @@
       // get feedback from alg1.js and put on page
       feedbackContainer.innerHTML = getFeedback(
         rounded_number,
-        sessionStorage.getItem("emStab"),
-        sessionStorage.getItem("consci")
+        sessionStorage.getItem('emStab'),
+        sessionStorage.getItem('consci'),
       );
-      $("#submit").prop("disabled", true);
-      $("#previous").prop("disabled", true);
-      $("#submit").addClass("button-finished");
+      $('#submit').prop('disabled', true);
+      $('#previous').prop('disabled', true);
+      $('#submit').addClass('button-finished');
     } else {
-      $("#errorModal").modal();
+      $('#errorModal').modal();
     }
   }
 
   // shows a slide with a question from the set
   function showSlide(n) {
-    slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
     currentSlide = n;
 
     if (currentSlide === 0) {
-      previousButton.style.display = "none";
+      previousButton.style.display = 'none';
     } else {
-      previousButton.style.display = "inline-block";
+      previousButton.style.display = 'inline-block';
     }
 
     if (currentSlide === slides.length - 1) {
-      nextButton.style.display = "none";
-      submitButton.style.display = "inline-block";
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'inline-block';
     } else {
-      nextButton.style.display = "inline-block";
-      submitButton.style.display = "none";
+      nextButton.style.display = 'inline-block';
+      submitButton.style.display = 'none';
     }
   }
 
@@ -164,7 +160,7 @@
     if (check) {
       showSlide(currentSlide + 1);
     } else {
-      $("#errorModal").modal();
+      $('#errorModal').modal();
     }
   }
 
@@ -172,26 +168,26 @@
     showSlide(currentSlide - 1);
   }
 
-  const quizContainer = document.getElementById("quiz");
-  const resultsContainer = document.getElementById("results");
-  const feedbackContainer = document.getElementById("feedback");
-  const submitButton = document.getElementById("submit");
+  const quizContainer = document.getElementById('quiz');
+  const resultsContainer = document.getElementById('results');
+  const feedbackContainer = document.getElementById('feedback');
+  const submitButton = document.getElementById('submit');
 
   // display quiz as page loads
   buildQuiz();
 
-  const previousButton = document.getElementById("previous");
-  const nextButton = document.getElementById("next");
-  const slides = document.querySelectorAll(".slide");
+  const previousButton = document.getElementById('previous');
+  const nextButton = document.getElementById('next');
+  const slides = document.querySelectorAll('.slide');
   let currentSlide = 0;
 
   showSlide(0);
 
   // on submit, show the results
-  submitButton.addEventListener("click", showResults);
-  previousButton.addEventListener("click", showPreviousSlide);
-  nextButton.addEventListener("click", showNextSlide);
-})();
+  submitButton.addEventListener('click', showResults);
+  previousButton.addEventListener('click', showPreviousSlide);
+  nextButton.addEventListener('click', showNextSlide);
+}());
 
 // MENTION IN IMPLEMENTATION ALSO
 
@@ -206,20 +202,18 @@
 // allow dropping onto elements
 function allowDrop(ev) {
   ev.preventDefault();
-  if (ev.target.getAttribute("draggable") == "true")
-    ev.dataTransfer.dropEffect = "none";
-  else ev.dataTransfer.dropEffect = "all";
+  if (ev.target.getAttribute('draggable') == 'true') { ev.dataTransfer.dropEffect = 'none'; } else ev.dataTransfer.dropEffect = 'all';
 }
 
 // allow dragging a ball, getting its id
 function dragBall(ev) {
-  ev.dataTransfer.setData("ballId", ev.target.id);
+  ev.dataTransfer.setData('ballId', ev.target.id);
 }
 
 // allow dropping a ball onto a cup element
 function dropBallOnCup(ev) {
   ev.preventDefault();
-  const ballId = ev.dataTransfer.getData("ballId");
+  const ballId = ev.dataTransfer.getData('ballId');
   const cup = ev.target;
   const ballElement = document.getElementById(ballId);
   cup.appendChild(ballElement);

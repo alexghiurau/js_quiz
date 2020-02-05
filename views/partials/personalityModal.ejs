@@ -14,7 +14,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Hi, <%= name %>. Tell me a bit about yourself.
+          Hi, <%= name %>. Please tell me a bit about yourself.
         </h5>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -28,6 +28,38 @@
           rate the extent to which the pair of traits applies to you, even if
           one characteristic applies more strongly than the other.
         </p>
+        <br />
+        <div class="row guideText">
+          <div class="col-sm">
+            <p>Disagree Strongly</p>
+            <p>1</p>
+          </div>
+          <div class="col-sm">
+            <p>Disagree Moderately</p>
+            <p>2</p>
+          </div>
+          <div class="col-sm">
+            <p>Disagree a little</p>
+            <p>3</p>
+          </div>
+          <div class="col-sm">
+            <p>Neither disagree or agree</p>
+            <p>4</p>
+          </div>
+          <div class="col-sm">
+            <p>Agree a little</p>
+            <p>5</p>
+          </div>
+          <div class="col-sm">
+            <p>Agree Moderately</p>
+            <p>6</p>
+          </div>
+          <div class="col-sm">
+            <p>Agree Strongly</p>
+            <p>7</p>
+          </div>
+        </div>
+        <br />
         <form>
           <!-- 1 -->
           <div class="form-group row">
@@ -39,7 +71,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="extravertedSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -57,7 +89,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="criticalSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -75,7 +107,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="dependableSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -93,7 +125,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="anxiousSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -111,7 +143,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="openToExperiencesSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -129,7 +161,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="reservedSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -148,7 +180,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="sympatheticSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -166,7 +198,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="disorganizedSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -184,7 +216,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="calmSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>
@@ -202,7 +234,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="conventionalSelect">
                 <option selected disabled
-                  >Select a value (1 lowest - 7 highest)</option
+                  >Select a value</option
                 >
                 <% for(let i = 1; i <= 7; i++) { %>
                 <option><%= i %></option>

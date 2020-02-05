@@ -1,22 +1,22 @@
-(function() {
+(function () {
   // check if user has personality data
   // to do ...
-})();
+}());
 
 const personalityArr = [];
 
 function handlePersonality() {
   // get values from personality modal form
-  const extraverted = parseInt($("#extravertedSelect :selected").val());
-  const critical = parseInt($("#criticalSelect :selected").val());
-  const dependable = parseInt($("#dependableSelect :selected").val());
-  const anxious = parseInt($("#anxiousSelect :selected").val());
-  const open = parseInt($("#openToExperiencesSelect :selected").val());
-  const reserved = parseInt($("#reservedSelect :selected").val());
-  const sympathetic = parseInt($("#sympatheticSelect :selected").val());
-  const disorganized = parseInt($("#disorganizedSelect :selected").val());
-  const calm = parseInt($("#calmSelect :selected").val());
-  const conventional = parseInt($("#conventionalSelect :selected").val());
+  const extraverted = parseInt($('#extravertedSelect :selected').val());
+  const critical = parseInt($('#criticalSelect :selected').val());
+  const dependable = parseInt($('#dependableSelect :selected').val());
+  const anxious = parseInt($('#anxiousSelect :selected').val());
+  const open = parseInt($('#openToExperiencesSelect :selected').val());
+  const reserved = parseInt($('#reservedSelect :selected').val());
+  const sympathetic = parseInt($('#sympatheticSelect :selected').val());
+  const disorganized = parseInt($('#disorganizedSelect :selected').val());
+  const calm = parseInt($('#calmSelect :selected').val());
+  const conventional = parseInt($('#conventionalSelect :selected').val());
 
   // push results into an array
   personalityArr.push(
@@ -29,17 +29,17 @@ function handlePersonality() {
     sympathetic,
     disorganized,
     calm,
-    conventional
+    conventional,
   );
 
-  console.log("personality array: ");
+  console.log('personality array: ');
   console.log(personalityArr);
 
   getTraits(personalityArr);
 }
 
 function getTraits(arr) {
-    // create new container array
+  // create new container array
   const traitsArr = [];
 
   // handle scores
@@ -55,7 +55,7 @@ function getTraits(arr) {
     agreeableness,
     conscientiousness,
     emotionalStability,
-    opennessToExperience
+    opennessToExperience,
   );
 
   console.log('traits arr is: ');
