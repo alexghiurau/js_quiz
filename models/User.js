@@ -1,5 +1,30 @@
 const mongoose = require('mongoose');
 
+// personality schema which goes inside use document
+const PersonalitySchema = new mongoose.Schema({
+    extraversion: {
+      type: Number,
+      required: true,
+    },
+    agreeableness: {
+      type: Number,
+      required: true,
+    },
+    conscientiousness: {
+      type: Number,
+      required: true,
+    },
+    emotionalStability: {
+      type: Number,
+      required: true,
+    },
+    opennessToExperience: {
+      type: Number,
+      required: true,
+    },
+});
+
+// user document defines name/account details
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -17,6 +42,7 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  personality: PersonalitySchema
 });
 
 const User = mongoose.model('User', UserSchema);

@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
@@ -64,6 +63,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/questions", require("./routes/questions"));
+app.use("/personality", require("./routes/personality"));
 
 // Declare port and start server
 const PORT = process.env.PORT || 5000;

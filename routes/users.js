@@ -59,7 +59,16 @@ router.post("/register", (req, res) => {
           const newUser = new User({
             name,
             email,
-            password
+            password,
+            // initialise user with 0 scores for personality
+            // to be changed later
+            personality: {
+              extraversion: 0,
+              agreeableness: 0,
+              conscientiousness: 0,
+              emotionalStability: 0,
+              opennessToExperience: 0,
+            },
           });
           // encrypt password
           bcrypt.genSalt(10, (err, salt) =>

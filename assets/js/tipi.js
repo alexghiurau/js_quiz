@@ -1,6 +1,21 @@
-(function () {
-  // check if user has personality data
-  // to do ...
+(async function () {
+  let email = "a@b.c";
+  const url = `/personality/${email}`;
+  const personality = await fetch(url)
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+  console.log(personality);
+
+  if (personality.personality.extraversion === 0 || 
+    personality.personality.agreeableness === 0 ||
+    personality.personality.conscientiousness === 0 ||
+    personality.personality.emotionalStability === 0 ||
+    personality.personality.opennessToExperience === 0) {
+      console.log("if statement definitely works!😂");
+    }
+
 }());
 
 const personalityArr = [];
