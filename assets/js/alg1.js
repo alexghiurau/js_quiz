@@ -4,15 +4,6 @@
 // emStab  - emotional stability (low/high)
 // consi   - conscientiousness (low/high)
 
-function createFeedbackString(feedbackArr) {
-  const arrNoDuplicates = [...new Set(feedbackArr)];
-  let feedbackString = '';
-  arrNoDuplicates.forEach((sentence) => {
-    feedbackString += `${sentence} `;
-  });
-  return feedbackString;
-}
-
 // Emotional Support Statements
 
 const emSupStatements = {
@@ -94,6 +85,15 @@ function getFeedback(score, emStab, consci) {
     slant,
   };
   return createFeedbackArray(feedbackData);
+}
+
+function createFeedbackString(feedbackArr) {
+  const arrNoDuplicates = [...new Set(feedbackArr)];
+  let feedbackString = '';
+  arrNoDuplicates.forEach((sentence) => {
+    feedbackString += `${sentence} `;
+  });
+  return feedbackString;
 }
 
 function createFeedbackArray(data) {

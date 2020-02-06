@@ -1,11 +1,4 @@
 (async function() {
-  const emStab = "low";
-  const consci = "low";
-
-  if (emStab === null || consci === null) {
-    $("#personalityModal").modal();
-  }
-
   // get questions from mongodb
   const url = "/questions";
   const questions = await fetch(url)
@@ -40,7 +33,7 @@
            <div id="basket">
             ${arrOfBalls
               .map(
-                (ball, i) => `
+                ball => `
             <div id="${`ball${ball.id}`}" class="ball" data-value="${
                   ball.value
                 }" draggable="true" ondragstart="dragBall(event)">${
@@ -81,23 +74,36 @@
     return answers;
   }
 
+  // checks if current slide's cups have at least a ball in each
+  // prevents scoring algorithm from malfunctioning
   function checkCurrentSlide() {
-    let check = false;
-    const slide = quizContainer.querySelector("div.active-slide");
-    const cups = slide.querySelectorAll("div.horizontal > div.cup");
+    let check = true;
+    let incompleteCounter = 0;
+    let slide = quizContainer.querySelector("div.active-slide");
+    let cups = slide.querySelectorAll("div.horizontal > div.cup");
 
-    const answers = createAnwersStore(cups);
+    let answers = createAnwersStore(cups);
 
     answers.forEach(answer => {
-      answer.length == 0 ? (check = false) : (check = true);
+      if (answer.length == 0) {
+        incompleteCounter += 1;
+      }
     });
+    
+    if (incompleteCounter > 0) {
+      check = false;
+    } else {
+      check = true;
+    }
     return check;
   }
 
   // shows results when Submit is clicked
   function showResults() {
     const check = checkCurrentSlide();
-    if (check) {
+    if (!check) {
+      $("#errorModal").modal();
+    } else {
       let numCorrect = 0;
 
       const slides = quizContainer.querySelectorAll("div.slide");
@@ -120,16 +126,11 @@
       resultsContainer.innerHTML = `You scored ${numCorrect} out of ${questions.length} (${rounded_number}%)`;
 
       // get feedback from alg1.js and put on page
-      feedbackContainer.innerHTML = getFeedback(
-        rounded_number,
-        sessionStorage.getItem("emStab"),
-        sessionStorage.getItem("consci")
-      );
+      feedbackContainer.innerHTML = getFeedback(rounded_number, "low", "low");
+      // disable buttons to prevent user navigation
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
       $("#submit").addClass("button-finished");
-    } else {
-      $("#errorModal").modal();
     }
   }
 
@@ -156,10 +157,10 @@
 
   function showNextSlide() {
     const check = checkCurrentSlide();
-    if (check) {
-      showSlide(currentSlide + 1);
-    } else {
+    if (!check) {
       $("#errorModal").modal();
+    } else {
+      showSlide(currentSlide + 1);
     }
   }
 

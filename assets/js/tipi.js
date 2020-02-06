@@ -13,7 +13,7 @@
     personality.personality.conscientiousness === 0 ||
     personality.personality.emotionalStability === 0 ||
     personality.personality.opennessToExperience === 0) {
-      console.log("if statement definitely works!😂");
+      $("#personalityModal").modal();
     }
 
 }());
@@ -95,5 +95,3 @@ function flipScores(score) {
       return 1;
   }
 }
-
-// let arr = [6, 5, 6, 4, 7, 5, 4, 2, 5, 4];
