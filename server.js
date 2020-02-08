@@ -31,6 +31,7 @@ app.set("view engine", "ejs");
 
 // Body parser
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Static middleware TO DO
 app.use(express.static(`${__dirname}/assets`));
@@ -64,6 +65,19 @@ app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/questions", require("./routes/questions"));
 app.use("/personality", require("./routes/personality"));
+
+// access cookie
+app.get('/api/user_data', (req, res) => {
+  if (req.user === undefined) {
+      // The user is not logged in
+      res.status(404).json({ message: "user not logged in" });
+  } else {
+      res.json({
+          id: req.user.id
+      });
+  }
+});
+
 
 // Declare port and start server
 const PORT = process.env.PORT || 5000;

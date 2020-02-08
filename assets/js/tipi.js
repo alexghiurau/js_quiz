@@ -1,18 +1,22 @@
+// store userId of current user
+let userId;
+
 (async function () {
-  let email = "a@b.c";
-  const url = `/personality/${email}`;
-  const personality = await fetch(url)
+
+  // get userId of current user
+  userId = await fetch('api/user_data')
     .then(res => res.json())
-    .then(data => data)
-    .catch(err => console.log(err));
+    .then(data => data.id);
 
-  console.log(personality);
+  const url = `/personality/${userId}`;
+  const user = await fetch(url)
+    .then(res => res.json())
 
-  if (personality.personality.extraversion === 0 || 
-    personality.personality.agreeableness === 0 ||
-    personality.personality.conscientiousness === 0 ||
-    personality.personality.emotionalStability === 0 ||
-    personality.personality.opennessToExperience === 0) {
+  if (user.personality.extraversion === 0 || 
+    user.personality.agreeableness === 0 ||
+    user.personality.conscientiousness === 0 ||
+    user.personality.emotionalStability === 0 ||
+    user.personality.opennessToExperience === 0) {
       $("#personalityModal").modal();
     }
 
@@ -47,9 +51,6 @@ function handlePersonality() {
     conventional,
   );
 
-  console.log('personality array: ');
-  console.log(personalityArr);
-
   getTraits(personalityArr);
 }
 
@@ -72,9 +73,7 @@ function getTraits(arr) {
     emotionalStability,
     opennessToExperience,
   );
-
-  console.log('traits arr is: ');
-  console.log(traitsArr);
+  pushPersonality(traitsArr);
 }
 
 function flipScores(score) {
@@ -94,4 +93,29 @@ function flipScores(score) {
     case 7:
       return 1;
   }
+}
+
+async function pushPersonality (traitsArr) {
+  const url = `/personality/${userId}`;
+  const personalityData = {
+    extraversion: traitsArr[0],
+    agreeableness: traitsArr[1],
+    conscientiousness: traitsArr[2],
+    emotionalStability: traitsArr[3],
+    opennessToExperience: traitsArr[4]
+  }
+  await fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(personalityData),
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log('success', data);
+  })
+  .catch(err => {
+    console.log('error', err);
+  });
 }

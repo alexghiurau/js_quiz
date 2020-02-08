@@ -1,1 +1,17 @@
-GET http://localhost:5000/questions
+GET http://localhost:5000/personality/5e3f0b2ade566f351c9b23dc
+###
+
+PATCH http://localhost:5000/personality/5e3eef871c9d440000a6b646
+Content-Type: application/json
+
+{
+    "extraversion": 0,
+    "agreeableness": 0,
+    "conscientiousness": 0,
+    "emotionalStability": 0,
+    "opennessToExperience": 0
+}
+
+###
+
+GET http://localhost:5000/api/user_data

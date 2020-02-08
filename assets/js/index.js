@@ -89,7 +89,7 @@
         incompleteCounter += 1;
       }
     });
-    
+
     if (incompleteCounter > 0) {
       check = false;
     } else {
@@ -125,13 +125,28 @@
       const rounded_number = Math.round(percent * 100) / 100;
       resultsContainer.innerHTML = `You scored ${numCorrect} out of ${questions.length} (${rounded_number}%)`;
 
+      // get the user personality data from mongo
+      const personalityData = getPersonalityData();
+
       // get feedback from alg1.js and put on page
-      feedbackContainer.innerHTML = getFeedback(rounded_number, "low", "low");
+      feedbackContainer.innerHTML = getFeedback(rounded_number, personalityData);
       // disable buttons to prevent user navigation
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
       $("#submit").addClass("button-finished");
     }
+  }
+
+  async function getPersonalityData() {
+    const userId = await fetch("api/user_data")
+      .then(res => res.json())
+      .then(data => data.id);
+
+    const personalityData = await fetch(`/personality/${userId}`)
+      .then(res => res.json())
+      .then(data => data.personality)
+
+      return personalityData;
   }
 
   // shows a slide with a question from the set

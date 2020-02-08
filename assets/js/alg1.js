@@ -46,17 +46,17 @@ function handleScore(score) {
   return roundedScore;
 }
 
-function getFeedback(score, emStab, consci) {
+function getFeedback(score, personalityData) {
   let slant;
   let ES;
   switch (handleScore(score)) {
     case 10:
       slant = 'neutral';
-      emStab == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
+      personalityData.emotionalStability == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
       break;
     case 30:
-      emStab == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
-      consci == 'low' && emStab != 'low'
+      personalityData.emotionalStability == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
+      personalityData.conscientiousness == 'low' && emStab != 'low'
         ? (slant = 'negative')
         : (slant = 'neutral');
       break;
@@ -66,17 +66,17 @@ function getFeedback(score, emStab, consci) {
       break;
     case 55:
       slant = 'neutral';
-      consci == 'high' ? (ES = ['P', 'A']) : (ES = ['R', 'A']);
+      personalityData.conscientiousness == 'high' ? (ES = ['P', 'A']) : (ES = ['R', 'A']);
       break;
     case 70:
-      consci == 'low' ? (ES = ['A']) : (ES = ['P']);
-      consci == 'low' && emStab != 'low'
+      personalityData.conscientiousness == 'low' ? (ES = ['A']) : (ES = ['P']);
+      personalityData.conscientiousness == 'low' && emStab != 'low'
         ? (slant = 'negative')
         : (slant = 'neutral');
       break;
     case 90:
       slant = 'neutral';
-      consci == 'low' ? (ES = ['P', 'P']) : (ES = ['P']);
+      personalityData.conscientiousness == 'low' ? (ES = ['P', 'P']) : (ES = ['P']);
   }
 
   const feedbackData = {
