@@ -1,57 +1,75 @@
 // store userId of current user
 let userId;
 
-(async function () {
-
+(async function() {
   // get userId of current user
-  userId = await fetch('api/user_data')
+  userId = await fetch("api/user_data")
     .then(res => res.json())
     .then(data => data.id);
 
   const url = `/personality/${userId}`;
-  const user = await fetch(url)
-    .then(res => res.json())
+  const user = await fetch(url).then(res => res.json());
 
-  if (user.personality.extraversion === 0 || 
+  if (
+    user.personality.extraversion === 0 ||
     user.personality.agreeableness === 0 ||
     user.personality.conscientiousness === 0 ||
     user.personality.emotionalStability === 0 ||
-    user.personality.opennessToExperience === 0) {
-      $("#personalityModal").modal();
-    }
-
-}());
-
-const personalityArr = [];
+    user.personality.opennessToExperience === 0
+  ) {
+    $("#personalityModal").modal();
+  }
+})();
 
 function handlePersonality() {
-  // get values from personality modal form
-  const extraverted = parseInt($('#extravertedSelect :selected').val(), 10);
-  const critical = parseInt($('#criticalSelect :selected').val(), 10);
-  const dependable = parseInt($('#dependableSelect :selected').val(), 10);
-  const anxious = parseInt($('#anxiousSelect :selected').val(), 10);
-  const open = parseInt($('#openToExperiencesSelect :selected').val(), 10);
-  const reserved = parseInt($('#reservedSelect :selected').val(), 10);
-  const sympathetic = parseInt($('#sympatheticSelect :selected').val(), 10);
-  const disorganized = parseInt($('#disorganizedSelect :selected').val(), 10);
-  const calm = parseInt($('#calmSelect :selected').val(), 10);
-  const conventional = parseInt($('#conventionalSelect :selected').val(), 10);
+  const personalityArr = [];
 
-  // push results into an array
-  personalityArr.push(
-    extraverted,
-    critical,
-    dependable,
-    anxious,
-    open,
-    reserved,
-    sympathetic,
-    disorganized,
-    calm,
-    conventional,
-  );
+  // ensure all questions were answered
+  if (
+    $("#extravertedSelect")[0].selectedIndex <= 0 ||
+    $("#criticalSelect")[0].selectedIndex <= 0 ||
+    $("#dependableSelect")[0].selectedIndex <= 0 ||
+    $("#anxiousSelect")[0].selectedIndex <= 0 ||
+    $("#openToExperiencesSelect")[0].selectedIndex <= 0 ||
+    $("#reservedSelect")[0].selectedIndex <= 0 ||
+    $("#sympatheticSelect")[0].selectedIndex <= 0 ||
+    $("#disorganizedSelect")[0].selectedIndex <= 0 ||
+    $("#calmSelect")[0].selectedIndex <= 0 ||
+    $("#conventionalSelect")[0].selectedIndex <= 0
+  ) {
+    alert("Ensure you answer all questions.");
+  } else {
+    // get rid of modal
+    $("#personalityModal").modal("hide");
 
-  getTraits(personalityArr);
+    // get values from personality modal form
+    const extraverted = parseInt($("#extravertedSelect :selected").val(), 10);
+    const critical = parseInt($("#criticalSelect :selected").val(), 10);
+    const dependable = parseInt($("#dependableSelect :selected").val(), 10);
+    const anxious = parseInt($("#anxiousSelect :selected").val(), 10);
+    const open = parseInt($("#openToExperiencesSelect :selected").val(), 10);
+    const reserved = parseInt($("#reservedSelect :selected").val(), 10);
+    const sympathetic = parseInt($("#sympatheticSelect :selected").val(), 10);
+    const disorganized = parseInt($("#disorganizedSelect :selected").val(), 10);
+    const calm = parseInt($("#calmSelect :selected").val(), 10);
+    const conventional = parseInt($("#conventionalSelect :selected").val(), 10);
+
+    // push results into an array
+    personalityArr.push(
+      extraverted,
+      critical,
+      dependable,
+      anxious,
+      open,
+      reserved,
+      sympathetic,
+      disorganized,
+      calm,
+      conventional
+    );
+
+    getTraits(personalityArr);
+  }
 }
 
 function getTraits(arr) {
@@ -71,7 +89,7 @@ function getTraits(arr) {
     agreeableness,
     conscientiousness,
     emotionalStability,
-    opennessToExperience,
+    opennessToExperience
   );
   pushPersonality(traitsArr);
 }
@@ -95,7 +113,7 @@ function flipScores(score) {
   }
 }
 
-async function pushPersonality (traitsArr) {
+async function pushPersonality(traitsArr) {
   const url = `/personality/${userId}`;
   const personalityData = {
     extraversion: traitsArr[0],
@@ -103,19 +121,19 @@ async function pushPersonality (traitsArr) {
     conscientiousness: traitsArr[2],
     emotionalStability: traitsArr[3],
     opennessToExperience: traitsArr[4]
-  }
+  };
   await fetch(url, {
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(personalityData),
+    body: JSON.stringify(personalityData)
   })
-  .then(res => res.json())
-  .then(data => {
-    console.log('success', data);
-  })
-  .catch(err => {
-    console.log('error', err);
-  });
+    .then(res => res.json())
+    .then(data => {
+      console.log("success", data);
+    })
+    .catch(err => {
+      console.log("error", err);
+    });
 }
