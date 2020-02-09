@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-app.use("/questions", require("./routes/questions"));
+app.use("/quizes", require("./routes/quizes"));
 app.use("/personality", require("./routes/personality"));
 
 // access cookie

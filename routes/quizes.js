@@ -1,14 +1,15 @@
 const express = require('express');
 
 const router = express.Router();
-const Question = require('../models/Question');
+// const Question = require('../models/Question');
+const Quiz = require('../models/Quiz');
 
 // get questions from mongodb
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const questions = await Question.find();
-    res.json(questions);
+    const quizes = await Quiz.findById(req.params.id);
+    res.json(quizes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

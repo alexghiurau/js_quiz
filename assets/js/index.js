@@ -1,7 +1,8 @@
 (async function() {
-  // get questions from mongodb
-  const url = "/questions";
-  const questions = await fetch(url)
+  // get a quiz (static for now)
+  const quizId = "5e404f0f1c9d4400003a2df0";
+  const url = `/quizes/${quizId}`;
+  const quiz = await fetch(url)
     .then(res => res.json())
     .then(data => data)
     .catch(err => console.log(err));
@@ -10,7 +11,7 @@
     const output = [];
 
     // for each question...
-    questions.forEach((currentQuestion, questionNumber) => {
+    quiz.questions.forEach((currentQuestion, questionNumber) => {
       // handle cups ids
       const cupIdArr = [];
       for (let i = 1; i <= currentQuestion.cups; i++) {
@@ -27,7 +28,7 @@
       output.push(
         `<div class="slide">
            <div class="question">${questionNumber + 1} of ${
-          questions.length
+          quiz.questions.length
         }. ${currentQuestion.question} </div>
            <div class="horizontal">
            <div id="basket">
@@ -121,32 +122,38 @@
       });
 
       // show number of correct answers out of total and get feedback
-      const percent = (numCorrect / questions.length) * 100;
+      const percent = (numCorrect / quiz.questions.length) * 100;
       const rounded_number = Math.round(percent * 100) / 100;
-      resultsContainer.innerHTML = `You scored ${numCorrect} out of ${questions.length} (${rounded_number}%)`;
+      resultsContainer.innerHTML = `You scored ${numCorrect} out of ${quiz.questions.length} (${rounded_number}%)`;
 
       // get the user personality data from mongo
       const personalityData = getPersonalityData();
 
       // get feedback from alg1.js and put on page
-      feedbackContainer.innerHTML = getFeedback(rounded_number, personalityData);
+      feedbackContainer.innerHTML = getFeedback(
+        rounded_number,
+        personalityData
+      );
       // disable buttons to prevent user navigation
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
+      $("#previous").addClass("button-finished");
       $("#submit").addClass("button-finished");
     }
   }
 
   async function getPersonalityData() {
+    // get userId or current user
     const userId = await fetch("api/user_data")
       .then(res => res.json())
       .then(data => data.id);
 
+    // get personality data
     const personalityData = await fetch(`/personality/${userId}`)
       .then(res => res.json())
-      .then(data => data.personality)
+      .then(data => data.personality);
 
-      return personalityData;
+    return personalityData;
   }
 
   // shows a slide with a question from the set
