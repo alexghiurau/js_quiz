@@ -26,16 +26,16 @@ const personalityArr = [];
 
 function handlePersonality() {
   // get values from personality modal form
-  const extraverted = parseInt($('#extravertedSelect :selected').val());
-  const critical = parseInt($('#criticalSelect :selected').val());
-  const dependable = parseInt($('#dependableSelect :selected').val());
-  const anxious = parseInt($('#anxiousSelect :selected').val());
-  const open = parseInt($('#openToExperiencesSelect :selected').val());
-  const reserved = parseInt($('#reservedSelect :selected').val());
-  const sympathetic = parseInt($('#sympatheticSelect :selected').val());
-  const disorganized = parseInt($('#disorganizedSelect :selected').val());
-  const calm = parseInt($('#calmSelect :selected').val());
-  const conventional = parseInt($('#conventionalSelect :selected').val());
+  const extraverted = parseInt($('#extravertedSelect :selected').val(), 10);
+  const critical = parseInt($('#criticalSelect :selected').val(), 10);
+  const dependable = parseInt($('#dependableSelect :selected').val(), 10);
+  const anxious = parseInt($('#anxiousSelect :selected').val(), 10);
+  const open = parseInt($('#openToExperiencesSelect :selected').val(), 10);
+  const reserved = parseInt($('#reservedSelect :selected').val(), 10);
+  const sympathetic = parseInt($('#sympatheticSelect :selected').val(), 10);
+  const disorganized = parseInt($('#disorganizedSelect :selected').val(), 10);
+  const calm = parseInt($('#calmSelect :selected').val(), 10);
+  const conventional = parseInt($('#conventionalSelect :selected').val(), 10);
 
   // push results into an array
   personalityArr.push(

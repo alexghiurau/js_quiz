@@ -79,10 +79,10 @@
   function checkCurrentSlide() {
     let check = true;
     let incompleteCounter = 0;
-    let slide = quizContainer.querySelector("div.active-slide");
-    let cups = slide.querySelectorAll("div.horizontal > div.cup");
+    const slide = quizContainer.querySelector("div.active-slide");
+    const cups = slide.querySelectorAll("div.horizontal > div.cup");
 
-    let answers = createAnwersStore(cups);
+    const answers = createAnwersStore(cups);
 
     answers.forEach(answer => {
       if (answer.length == 0) {

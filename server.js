@@ -90,6 +90,7 @@ app.listen(PORT, err => {
   }
 });
 
+// MENTION WHY I DIDNT USE THIS AND USED INLINE
 // For sending error codes
 function error(res, err) {
   res.sendStatus(500);
