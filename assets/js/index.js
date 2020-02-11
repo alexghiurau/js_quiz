@@ -137,8 +137,8 @@
       // disable buttons to prevent user navigation
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
-      $("#previous").addClass("button-finished");
-      $("#submit").addClass("button-finished");
+      // $("#previous").addClass("button-finished");
+      // $("#submit").addClass("button-finished");
     }
   }
 

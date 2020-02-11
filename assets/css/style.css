@@ -18,8 +18,7 @@ h1 {
 .question {
   font-size: 24px;
 }
-.button-custom {
-  font-family: "Work Sans", sans-serif;
+.btn-quiz {
   font-size: 22px;
   background-color: #c62828;
   color: #fff;
@@ -30,10 +29,7 @@ h1 {
   margin-bottom: 20px;
   margin-top: 8em;
 }
-.button-custom:hover {
-  background-color: #8e0000;
-}
-.button-finished {
+.btn-quiz:hover {
   background-color: #8e0000;
 }
 

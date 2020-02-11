@@ -1,0 +1,42 @@
+[
+  {
+    "difficulty": "normal",
+    "questions": [
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [2, 2, 4],
+        "cups": 2
+      },
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [10, 10, 5, 5],
+        "cups": 3
+      },
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [2, 3, 5],
+        "cups": 2
+      }
+    ]
+  },
+  {
+    "difficulty": "hard",
+    "questions": [
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [2, 2, 1, 1],
+        "cups": 4
+      },
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [10, 10, 5, 5, 10, 10],
+        "cups": 5
+      },
+      {
+        "question": "Place balls in cups blabla",
+        "balls": [2, 3, 5, 5, 5],
+        "cups": 4
+      }
+    ]
+  }
+]

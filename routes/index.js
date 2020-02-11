@@ -11,4 +11,9 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => res.render('dashboar
   name: req.user.name,
 }));
 
+// admin dashboard
+router.get('/quizmaker', ensureAuthenticated, (req, res) => res.render('quizMaker', {
+  name: req.user.name,
+}));
+
 module.exports = router;

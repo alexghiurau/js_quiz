@@ -78,7 +78,6 @@ app.get('/api/user_data', (req, res) => {
   }
 });
 
-
 // Declare port and start server
 const PORT = process.env.PORT || 5000;
 
