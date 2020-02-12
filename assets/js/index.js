@@ -1,7 +1,7 @@
 (async function() {
   // get a quiz (static for now)
-  const quizId = "5e404f0f1c9d4400003a2df0";
-  const url = `/quizes/${quizId}`;
+  const difficulty = "easy";
+  const url = `/quizes/${difficulty}`;
   const quiz = await fetch(url)
     .then(res => res.json())
     .then(data => data)
@@ -137,8 +137,6 @@
       // disable buttons to prevent user navigation
       $("#submit").prop("disabled", true);
       $("#previous").prop("disabled", true);
-      // $("#previous").addClass("button-finished");
-      // $("#submit").addClass("button-finished");
     }
   }
 

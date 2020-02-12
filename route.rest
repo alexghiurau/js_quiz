@@ -15,3 +15,15 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/user_data
+
+###
+
+GET http://localhost:5000/quizes/
+
+###
+
+POST http://localhost:5000/quizes/postquizes
+
+###
+
+GET http://localhost:5000/users/all

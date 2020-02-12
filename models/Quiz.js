@@ -16,7 +16,7 @@ const questionSchema = new mongoose.Schema({
   });
 
 const quizSchema = new mongoose.Schema({
-  quizDifficulty: {
+  difficulty: {
     type: String,
     required: true,
   },

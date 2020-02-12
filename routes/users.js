@@ -13,6 +13,16 @@ router.get("/login", (req, res) => res.render("login"));
 // Register page
 router.get("/register", (req, res) => res.render("register"));
 
+// get learners list
+router.get("/learners", async (req, res) => {
+  try {
+    const users = await User.find({admin: false});
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Register handler
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
@@ -61,7 +71,6 @@ router.post("/register", (req, res) => {
             email,
             password,
             // initialise user with 0 scores for personality
-            // to be changed later
             personality: {
               extraversion: 0,
               agreeableness: 0,
@@ -98,7 +107,7 @@ router.post("/register", (req, res) => {
 // Login Handler
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/dashboard",
+    successRedirect: "/home",
     failureRedirect: "/users/login",
     failureFlash: true
   })(req, res, next);
