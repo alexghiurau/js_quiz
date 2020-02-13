@@ -3,23 +3,23 @@ const mongoose = require('mongoose');
 // personality schema which goes inside use document
 const PersonalitySchema = new mongoose.Schema({
     extraversion: {
-      type: Number,
+      type: String,
       required: true,
     },
     agreeableness: {
-      type: Number,
+      type: String,
       required: true,
     },
     conscientiousness: {
-      type: Number,
+      type: String,
       required: true,
     },
     emotionalStability: {
-      type: Number,
+      type: String,
       required: true,
     },
     opennessToExperience: {
-      type: Number,
+      type: String,
       required: true,
     },
 });

@@ -100,7 +100,7 @@
   }
 
   // shows results when Submit is clicked
-  function showResults() {
+  async function showResults() {
     const check = checkCurrentSlide();
     if (!check) {
       $("#errorModal").modal();
@@ -127,7 +127,7 @@
       resultsContainer.innerHTML = `You scored ${numCorrect} out of ${quiz.questions.length} (${rounded_number}%)`;
 
       // get the user personality data from mongo
-      const personalityData = getPersonalityData();
+      const personalityData = await getPersonalityData();
 
       // get feedback from alg1.js and put on page
       feedbackContainer.innerHTML = getFeedback(

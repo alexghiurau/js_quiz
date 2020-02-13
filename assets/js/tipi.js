@@ -11,11 +11,11 @@ let userId;
   const user = await fetch(url).then(res => res.json());
 
   if (
-    user.personality.extraversion === 0 ||
-    user.personality.agreeableness === 0 ||
-    user.personality.conscientiousness === 0 ||
-    user.personality.emotionalStability === 0 ||
-    user.personality.opennessToExperience === 0
+    user.personality.extraversion === 'n/a' ||
+    user.personality.agreeableness === 'n/a' ||
+    user.personality.conscientiousness === 'n/a' ||
+    user.personality.emotionalStability === 'n/a' ||
+    user.personality.opennessToExperience === 'n/a'
   ) {
     $("#personalityModal").modal();
   }
@@ -116,11 +116,11 @@ function flipScores(score) {
 async function pushPersonality(traitsArr) {
   const url = `/personality/${userId}`;
   const personalityData = {
-    extraversion: traitsArr[0],
-    agreeableness: traitsArr[1],
-    conscientiousness: traitsArr[2],
-    emotionalStability: traitsArr[3],
-    opennessToExperience: traitsArr[4]
+    extraversion: traitsArr[0] >= 4.44 ? 'high' : 'low',
+    agreeableness: traitsArr[1] >= 5.23 ? 'high' : 'low',
+    conscientiousness: traitsArr[2] >= 5.4 ? 'high' : 'low',
+    emotionalStability: traitsArr[3] >= 4.83 ? 'high' : 'low',
+    opennessToExperience: traitsArr[4] >= 5.38 ? 'high' : 'low'
   };
   await fetch(url, {
     method: "PATCH",

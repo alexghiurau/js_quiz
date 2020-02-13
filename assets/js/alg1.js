@@ -56,7 +56,7 @@ function getFeedback(score, personalityData) {
       break;
     case 30:
       personalityData.emotionalStability == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
-      personalityData.conscientiousness == 'low' && emStab != 'low'
+      personalityData.conscientiousness == 'low' && personalityData.emotionalStability != 'low'
         ? (slant = 'negative')
         : (slant = 'neutral');
       break;
@@ -70,7 +70,7 @@ function getFeedback(score, personalityData) {
       break;
     case 70:
       personalityData.conscientiousness == 'low' ? (ES = ['A']) : (ES = ['P']);
-      personalityData.conscientiousness == 'low' && emStab != 'low'
+      personalityData.conscientiousness == 'low' && personalityData.emotionalStability != 'low'
         ? (slant = 'negative')
         : (slant = 'neutral');
       break;

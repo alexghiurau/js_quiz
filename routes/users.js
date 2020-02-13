@@ -72,11 +72,11 @@ router.post("/register", (req, res) => {
             password,
             // initialise user with 0 scores for personality
             personality: {
-              extraversion: 0,
-              agreeableness: 0,
-              conscientiousness: 0,
-              emotionalStability: 0,
-              opennessToExperience: 0,
+              extraversion: 'n/a',
+              agreeableness: 'n/a',
+              conscientiousness: 'n/a',
+              emotionalStability: 'n/a',
+              opennessToExperience: 'n/a',
             },
           });
           // encrypt password
