@@ -1,61 +1,67 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> Register
-      </h1>
-      <%- include('./partials/messages.ejs'); %>
-      <form action="/users/register" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Enter Name"
-            value="<%= typeof name != 'undefined' ? name : '' %>"
-            autofocus
-          />
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4"><i
+                                            class="fas fa-user-plus"></i>Create Account</h3>
+                                    <%- include('./partials/messages.ejs'); %>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/users/register" method="POST">
+                                        <div class="form-group"><label class="small mb-1" for="name">Full
+                                                Name</label><input class="form-control py-4" id="name" type="text"
+                                                name="name" placeholder="Enter full name" value="<%= typeof name != 'undefined' ? name : '' %>" autofocus /></div>
+
+                                        <div class="form-group"><label class="small mb-1"
+                                                for="email">Email</label><input class="form-control py-4"
+                                                id="email" type="email" aria-describedby="emailHelp"
+                                                name="email" placeholder="Enter email address" value="<%= typeof email != 'undefined' ? email : '' %>"/></div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"><label class="small mb-1"
+                                                        for="password">Password</label><input
+                                                        class="form-control py-4" id="password" type="password"
+                                                        name="password" placeholder="Enter password" value="<%= typeof password != 'undefined' ? password : '' %>"/></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"><label class="small mb-1"
+                                                        for="password2">Confirm Password</label><input
+                                                        class="form-control py-4" id="password2"
+                                                        type="password" name="password2" placeholder="Confirm password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">
+                                            Register
+                                          </button></div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="/users/login">Have an account? Go to login</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
-          />
+        </body>
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Alex Ghiurau 2020</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Create Password"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password2">Confirm Password</label>
-          <input
-            type="password"
-            id="password2"
-            name="password2"
-            class="form-control"
-            placeholder="Confirm Password"
-            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">
-          Register
-        </button>
-      </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
     </div>
-  </div>
-</div>

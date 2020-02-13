@@ -1,35 +1,52 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login</h1>
-      <%- include('./partials/messages.ejs'); %>
-      <form action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-            autofocus
-          />
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4"><i
+                                            class="fas fa-sign-in-alt"></i>Login</h3>
+                                    <%- include('./partials/messages.ejs'); %>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/users/login" method="POST">
+                                        <div class="form-group"><label class="small mb-1"
+                                                for="email">Email</label><input class="form-control py-4" id="email"
+                                                type="email" name="email" placeholder="Enter email address" autofocus />
+                                        </div>
+                                        <div class="form-group"><label class="small mb-1"
+                                                for="password">Password</label><input class="form-control py-4"
+                                                id="password" type="password" name="password"
+                                                placeholder="Enter password" /></div>
+                                        <div class="form-group mt-4 mb-0"><button type="submit"
+                                                class="btn btn-primary btn-block">Login</button></div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="/users/register">Need an account? Sign up!</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Enter Password"
-          />
+        </body>
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Alex Ghiurau 2020</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
-      </p>
     </div>
-  </div>
-</div>
