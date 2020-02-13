@@ -1,31 +1,43 @@
-<!-- include the navbar partial -->
-<%- include('./partials/navbar.ejs'); %>
-<link rel="stylesheet" href="/css/style.css" />
+<body class="sb-nav-fixed">
+  <%- include('./partials/navbar.ejs'); %>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid">
+        <br>
+        <div class="card mb-4">
+          <div class="card-header"></i>Quiz Management</div>
+          <div class="card-body">
+            <p>Use this section to update the quizes using the quizes.json file. Clicking the button will replicate
+              everything that's on the json file.</p>
+            <div class="card bg-primary text-white mb-4">
+              <div class="card-body">Update Quizes</div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">Start now</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              </div>
+            </div>
+            <!-- end quiz cards -->
+          </div>
+        </div>
 
-<div class="container-fluid quiz-update-container">
-    <h1>Update quizes in database</h1>
-    <button class="btn btn-primary btn-lg" id="btn-quiz-update" onclick="updateQuizes()">Update quiz list from JSON</button>
-</div>
-<div class="container-fluid users-container">
-    <h1>Learner List</h1>
-  <div class="horizontal" id="user-list">
-    
-  </div>
-</div>
-
-  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-    <div class="toast" id="updateQuizToast" style="position: absolute; top: 0; right: 0;" data-autohide="false">
-      <div class="toast-header">
-        <strong class="mr-auto">Message</strong>
-        <small>Just now</small>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="card mb-4">
+          <div class="card-header"></i>User Management</div>
+          <div class="card-body">
+            <p>Use this section to reset user personality information. Upon next login they will be asked to complete
+              the questionnaire again.</p>
+            <div class="card bg-primary text-white mb-4">
+              <div class="card-body">A user</div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">Start now</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              </div>
+            </div>
+            <!-- end quiz cards -->
+          </div>
+        </div>
       </div>
-      <div class="toast-body">
-        Quiz list updated (from quizes.json).
-      </div>
-    </div>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
   </div>
-
-<script src="/js/admin.js"></script>
+  </div>
+  <script src="/js/scripts.js"></script>
