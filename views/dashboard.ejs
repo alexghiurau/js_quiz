@@ -1,11 +1,12 @@
+<link rel="stylesheet" href="/css/style.css">
 <body class="sb-nav-fixed">
   <%- include('./partials/navbar.ejs'); %>
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid">
         <br>
-        <div class="card mb-4">
-          <div class="card-header"></i>Quizes</div>
+        <div class="card mb-4" id="quizesContainer">
+          <div class="card-header">Quizes</div>
           <div class="card-body">
             <!-- start quiz cards -->
             <div class="row">
@@ -13,7 +14,7 @@
                   <div class="card bg-success text-white mb-4">
                       <div class="card-body">Easy Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="#">Start now</a>
+                          <a class="small text-white stretched-link" href="#" onclick="loadQuiz('easy')">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -22,7 +23,7 @@
                   <div class="card bg-warning text-white mb-4">
                       <div class="card-body">Medium Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="#">Start now</a>
+                          <a class="small text-white stretched-link" href="#" onclick="loadQuiz('medium')">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -31,7 +32,7 @@
                   <div class="card bg-danger text-white mb-4">
                       <div class="card-body">Hard Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="#">Start now</a>
+                          <a class="small text-white stretched-link" href="#" onclick="loadQuiz('hard')">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -40,9 +41,23 @@
             <!-- end quiz cards -->
           </div>
         </div>
+
+        <div class="quiz-container">
+          <div id="quiz"></div>
+        </div>
+        <button class="btn btn-primary btn-quiz" id="previous">Previous Question</button>
+        <button class="btn btn-primary btn-quiz" id="next">Next Question</button>
+        <button class="btn btn-primary btn-quiz" id="submit">Submit Quiz</button>
+        <div id="results"></div>
+        <div id="feedback"></div>
+
       </div>
     </main>
     <%- include('./partials/footer.ejs'); %>
   </div>
   </div>
   <script src="/js/scripts.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/alg1.js"></script>
+  <script src="/js/tipi.js"></script>
+  

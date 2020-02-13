@@ -45,7 +45,6 @@
   position: relative;
   height: 200px;
   margin-top: 60px;
-  width: 100vw;
 }
 
 #basket {
@@ -80,51 +79,3 @@
   margin: 1em;
 }
 
-.main-container {
-  margin: 0;
-  padding: 0;
-}
-
-.quiz {
-  width: 100vw;
-}
-
-.button-container {
-  width: 100vw;
-}
-
-#results {
-  width: 100vw;
-}
-
-#feedback {
-  width: 100vw;
-}
-
-.navbar {
-  width: 100vw;
-}
-
-.user-card {
-  margin: 1rem;
-}
-
-.btn-users {
-  margin-bottom: 1rem;
-  width: 10rem;
-  
-}
-.quiz-update-container {
-  margin-bottom: 2rem;
-  text-align: center;
-  width: 100vw;
-}
-
-.users-container {
-  text-align: center;
-  width: 100vw;
-}
-
-#btn-quiz-update {
-  margin: 1rem;
-}
