@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
-const { checkAdmin } = require('../config/auth');
+// const { checkAdmin } = require('../config/auth');
 
 // welcome page
 router.get('/', (req, res) => res.render('login'));

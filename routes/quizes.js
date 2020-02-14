@@ -1,10 +1,14 @@
 const express = require("express");
 
 const router = express.Router();
-// const Question = require('../models/Question');
+const { ensureAuthenticated } = require('../config/auth');
 const Quiz = require("../models/Quiz");
 
-// get questions from mongodb
+router.get('/dashboardQuiz', ensureAuthenticated, (req, res) => {
+  res.render('dashboardQuiz'), {
+    name: req.user.name,
+  }
+});
 
 router.get("/:difficulty", async (req, res) => {
   try {
