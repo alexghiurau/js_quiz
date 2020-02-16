@@ -7,8 +7,7 @@
 
   users.forEach(user => {
     output.push(
-      `<div class="card user-card" style="width: 14rem;>
-            <img src="/img/user.svg" class="card-img-top" alt="..." />
+      `<div class="card" style="width: 10rem;>
             <div class="card-body">
               <h5 class="card-title">${user.name}</h5>
               <p class="card-text">
