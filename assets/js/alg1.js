@@ -7,22 +7,22 @@
 // Emotional Support Statements
 
 const emSupStatements = {
-  P: ['That was hard but you did it.', 'I am proud of you.', 'Well done.'],
+  P: ["That was hard but you did it.", "I am proud of you.", "Well done."],
   ER: [
     "I know what you're feeling.",
-    'You must be really happy.',
-    'I understand that you may be upset.',
+    "You must be really happy.",
+    "I understand that you may be upset."
   ],
   R: [
-    'Everyone is wrong sometimes.',
-    'Everyone finds this hard.',
-    'You will get the hang of it eventually.',
+    "Everyone is wrong sometimes.",
+    "Everyone finds this hard.",
+    "You will get the hang of it eventually."
   ],
   A: [
-    'Just keep practising.',
-    'Just take a bit longer next time.',
-    'Just read the questions more carefully.',
-  ],
+    "Just keep practising.",
+    "Just take a bit longer next time.",
+    "Just read the questions more carefully."
+  ]
 };
 
 function handleScore(score) {
@@ -51,46 +51,56 @@ function getFeedback(score, personalityData) {
   let ES;
   switch (handleScore(score)) {
     case 10:
-      slant = 'neutral';
-      personalityData.emotionalStability == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
+      slant = "neutral";
+      personalityData.emotionalStability == "low"
+        ? (ES = ["ER", "R", "A"])
+        : (ES = ["R", "A"]);
       break;
     case 30:
-      personalityData.emotionalStability == 'low' ? (ES = ['ER', 'R', 'A']) : (ES = ['R', 'A']);
-      personalityData.conscientiousness == 'low' && personalityData.emotionalStability != 'low'
-        ? (slant = 'negative')
-        : (slant = 'neutral');
+      personalityData.emotionalStability == "low"
+        ? (ES = ["ER", "R", "A"])
+        : (ES = ["R", "A"]);
+      personalityData.conscientiousness == "low" &&
+      personalityData.emotionalStability != "low"
+        ? (slant = "negative")
+        : (slant = "neutral");
       break;
     case 45:
-      slant = 'neutral';
-      ES = ['R', 'A'];
+      slant = "neutral";
+      ES = ["R", "A"];
       break;
     case 55:
-      slant = 'neutral';
-      personalityData.conscientiousness == 'high' ? (ES = ['P', 'A']) : (ES = ['R', 'A']);
+      slant = "neutral";
+      personalityData.conscientiousness == "high"
+        ? (ES = ["P", "A"])
+        : (ES = ["R", "A"]);
       break;
     case 70:
-      personalityData.conscientiousness == 'low' ? (ES = ['A']) : (ES = ['P']);
-      personalityData.conscientiousness == 'low' && personalityData.emotionalStability != 'low'
-        ? (slant = 'negative')
-        : (slant = 'neutral');
+      personalityData.conscientiousness == "low" ? (ES = ["A"]) : (ES = ["P"]);
+      personalityData.conscientiousness == "low" &&
+      personalityData.emotionalStability != "low"
+        ? (slant = "negative")
+        : (slant = "neutral");
       break;
     case 90:
-      slant = 'neutral';
-      personalityData.conscientiousness == 'low' ? (ES = ['P', 'P']) : (ES = ['P']);
+      slant = "neutral";
+      personalityData.conscientiousness == "low"
+        ? (ES = ["P", "P"])
+        : (ES = ["P"]);
   }
 
   const feedbackData = {
     score,
     ES,
-    slant,
+    slant
   };
   return createFeedbackArray(feedbackData);
 }
 
 function createFeedbackString(feedbackArr) {
   const arrNoDuplicates = [...new Set(feedbackArr)];
-  let feedbackString = '';
-  arrNoDuplicates.forEach((sentence) => {
+  let feedbackString = "";
+  arrNoDuplicates.forEach(sentence => {
     feedbackString += `${sentence} `;
   });
   return feedbackString;
@@ -99,13 +109,13 @@ function createFeedbackString(feedbackArr) {
 function createFeedbackArray(data) {
   const feedbackArr = [];
 
-  data.ES.forEach((statement) => {
-    Object.keys(emSupStatements).forEach((key) => {
+  data.ES.forEach(statement => {
+    Object.keys(emSupStatements).forEach(key => {
       if (statement === key) {
         feedbackArr.push(
           emSupStatements[key][
             Math.floor(Math.random() * emSupStatements[key].length)
-          ],
+          ]
         );
       }
     });

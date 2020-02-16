@@ -66,15 +66,15 @@ app.use("/users", require("./routes/users"));
 app.use("/quizes", require("./routes/quizes"));
 app.use("/personality", require("./routes/personality"));
 
-// access cookie
-app.get('/api/user_data', (req, res) => {
+// access id from cookie
+app.get("/api/user_data", (req, res) => {
   if (req.user === undefined) {
-      // The user is not logged in
-      res.status(404).json({ message: "user not logged in" });
+    // The user is not logged in
+    res.status(404).json({ message: "user not logged in" });
   } else {
-      res.json({
-          id: req.user.id
-      });
+    res.json({
+      id: req.user.id
+    });
   }
 });
 

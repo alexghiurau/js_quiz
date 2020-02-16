@@ -16,7 +16,7 @@ router.get("/register", (req, res) => res.render("register"));
 // get learners list
 router.get("/learners", async (req, res) => {
   try {
-    const users = await User.find({admin: false});
+    const users = await User.find({ admin: false });
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -70,14 +70,14 @@ router.post("/register", (req, res) => {
             name,
             email,
             password,
-            // initialise user with 0 scores for personality
+            // initialise user with 'n/a' scores for personality
             personality: {
-              extraversion: 'n/a',
-              agreeableness: 'n/a',
-              conscientiousness: 'n/a',
-              emotionalStability: 'n/a',
-              opennessToExperience: 'n/a',
-            },
+              extraversion: "n/a",
+              agreeableness: "n/a",
+              conscientiousness: "n/a",
+              emotionalStability: "n/a",
+              opennessToExperience: "n/a"
+            }
           });
           // encrypt password
           bcrypt.genSalt(10, (err, salt) =>

@@ -30,11 +30,11 @@ async function resetPersonality(event) {
   let userId = event.target.dataset.userid;
   const url = `/personality/${userId}`;
   const personalityData = {
-    extraversion: 'n/a',
-    agreeableness: 'n/a',
-    conscientiousness: 'n/a',
-    emotionalStability: 'n/a',
-    opennessToExperience: 'n/a',
+    extraversion: "n/a",
+    agreeableness: "n/a",
+    conscientiousness: "n/a",
+    emotionalStability: "n/a",
+    opennessToExperience: "n/a"
   };
   await fetch(url, {
     method: "PATCH",
@@ -61,5 +61,5 @@ async function updateQuizes() {
   })
     .then(res => res.json)
     .catch(err => console.log(err));
-  $('#updateQuizToast').toast('show');
+  $("#updateQuizToast").toast("show");
 }
