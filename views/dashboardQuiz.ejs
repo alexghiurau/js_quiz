@@ -8,7 +8,6 @@
         <div class="card mb-4" id="quizesContainer">
           <div class="card-header">Quiz</div>
           <div class="card-body">
-            <!-- start quiz cards -->
             <div class="quiz-container">
               <div id="quiz"></div>
             </div>
@@ -17,7 +16,7 @@
             <button class="btn btn-primary btn-quiz" id="submit">Submit Quiz</button>
             <div id="results"></div>
             <div id="feedback"></div>
-            <!-- end quiz cards -->
+            
           </div>
         </div>
       </div>
@@ -25,8 +24,7 @@
     <%- include('./partials/footer.ejs'); %>
   </div>
 </div>
-</body>
-  <%- include('./partials/quizErrorModal.ejs'); %>
-  
   <script src="/js/dashboardQuiz.js"></script>
   <script src="/js/alg1.js"></script>
+  <%- include('./partials/quizErrorModal.ejs'); %>
+</body>
