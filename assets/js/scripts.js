@@ -4,8 +4,10 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
  */
 (function($) {
+  "use strict";
+
   // Add active state to sidbar nav links
-  const path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+  var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
   $("#layoutSidenav_nav .sb-sidenav a.nav-link").each(function() {
     if (this.href === path) {
       $(this).addClass("active");
