@@ -14,8 +14,8 @@
               <p class="card-text">
                   ${user.email}
               </p>
-              <a href="#" class="btn btn-primary btn-users btn-sm">View past results</a>
-              <a href="#" class="btn btn-warning btn-users btn-sm" data-userid="${user._id}" onClick=resetPersonality(event)>Reset personality</a>
+              <a href="#" class="btn btn-primary btn-users btn-sm">View Past Results</a>
+              <a href="#" class="btn btn-warning btn-users btn-sm" data-userid="${user._id}" onClick=resetPersonality(event)>Reset Personality</a>
             </div>
           </div>`
     );

@@ -3,7 +3,7 @@ let userId;
 
 (async function() {
   // get userId of current user
-  userId = await fetch("api/user_data")
+  userId = await fetch("/api/user_data")
     .then(res => res.json())
     .then(data => data.id);
 

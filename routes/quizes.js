@@ -1,13 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const { ensureAuthenticated } = require('../config/auth');
+const { ensureAuthenticated } = require("../config/auth");
 const Quiz = require("../models/Quiz");
 
-router.get('/dashboardQuiz', ensureAuthenticated, (req, res) => {
-  res.render('dashboardQuiz'), {
-    name: req.user.name,
-  }
+router.get("/dashboardQuiz", ensureAuthenticated, (req, res) => {
+  const name = req.user.name;
+  res.render("dashboardQuiz", { name });
 });
 
 router.get("/:difficulty", async (req, res) => {
@@ -39,8 +38,7 @@ router.post("/postquizes", async (req, res) => {
         difficulty: quiz.difficulty,
         questions: quiz.questions
       });
-      newQuiz.save()
-      .then(data => data);
+      newQuiz.save().then(data => data);
     });
     res.end();
   } catch (error) {

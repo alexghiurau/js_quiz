@@ -142,7 +142,7 @@
 
   async function getPersonalityData() {
     // get userId or current user
-    const userId = await fetch("api/user_data")
+    const userId = await fetch("/api/user_data")
       .then(res => res.json())
       .then(data => data.id);
 
@@ -239,10 +239,6 @@ function dropBallOnCup(ev) {
   const cup = ev.target;
   const ballElement = document.getElementById(ballId);
   cup.appendChild(ballElement);
-}
-
-function loadQuiz(difficulty) {
-  $('#quizesContainer').remove();
 }
 
 // INCLUDE IN IMPLEMENTATION PROBLEMS

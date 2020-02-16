@@ -9,30 +9,16 @@
           <div class="card-body">
             <p>Use this section to update the quizes using the quizes.json file. Clicking the button will replicate
               everything that's on the json file.</p>
-            <div class="card bg-primary text-white mb-4">
-              <div class="card-body">Update Quizes</div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">Start now</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-              </div>
-            </div>
-            <!-- end quiz cards -->
+            <button class="btn btn-primary" onclick="updateQuizes()">Update Quizes</button>
           </div>
         </div>
 
         <div class="card mb-4">
           <div class="card-header"></i>User Management</div>
-          <div class="card-body">
+          <div class="card-body" id="user-list">
             <p>Use this section to reset user personality information. Upon next login they will be asked to complete
               the questionnaire again.</p>
-            <div class="card bg-primary text-white mb-4">
-              <div class="card-body">A user</div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">Start now</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-              </div>
-            </div>
-            <!-- end quiz cards -->
+            <br>
           </div>
         </div>
       </div>
@@ -40,4 +26,4 @@
     <%- include('./partials/footer.ejs'); %>
   </div>
   </div>
-  <script src="/js/scripts.js"></script>
+  <script src="/js/admin.js"></script>
