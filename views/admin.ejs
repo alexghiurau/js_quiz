@@ -7,18 +7,17 @@
         <div class="card mb-4">
           <div class="card-header">Quiz Management</div>
           <div class="card-body">
-            <p>Use this section to update the quizes using the quizes.json file. Clicking the button will replicate
-              everything that's on the json file.</p>
-            <button class="btn btn-primary" onclick="updateQuizes()">Update Quizes</button>
+            <p>Use this section to update the quizes using the quizes.json file. Clicking the button below will replicate
+              everything that's on the json file. Make sure json formatting is correct.</p>
+            <button class="btn btn-lg btn-success" onclick="updateQuizes()">Update Quizes</button>
           </div>
         </div>
 
         <div class="card mb-4">
           <div class="card-header"></i>User Management</div>
-          <div class="card-body" id="user-list">
-            <p>Use this section to reset user personality information. Upon next login they will be asked to complete
-              the questionnaire again.</p>
-            <br>
+          <div class="card-body">
+            <div class="row" id="user-list">
+            </div>
           </div>
         </div>
       </div>
@@ -26,4 +25,4 @@
     <%- include('./partials/footer.ejs'); %>
   </div>
   </div>
-  <script src="/js/admin.js"></script>
+  <script src="/js/admin.js"></script>  
