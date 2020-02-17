@@ -59,7 +59,6 @@ async function updateQuizes() {
 			'Content-Type': 'application/json',
 		},
 	})
-		.then(res => res.json)
 		.catch(err => console.log(err));
 	$('#updateQuizToast').toast('show');
 }

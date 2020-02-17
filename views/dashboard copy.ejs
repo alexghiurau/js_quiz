@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/css/style.css">
 <body class="sb-nav-fixed">
   <%- include('./partials/navbar.ejs'); %>
   <div id="layoutSidenav_content">
@@ -14,7 +13,7 @@
                   <div class="card bg-success text-white mb-4">
                       <div class="card-body">Easy Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="">Start now</a>
+                          <a class="small text-white stretched-link" href="/quizes/dashboardQuiz">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -23,7 +22,7 @@
                   <div class="card bg-warning text-white mb-4">
                       <div class="card-body">Medium Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="">Start now</a>
+                          <a class="small text-white stretched-link" href="/quizes/dashboardQuiz">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -32,7 +31,7 @@
                   <div class="card bg-danger text-white mb-4">
                       <div class="card-body">Hard Quiz</div>
                       <div class="card-footer d-flex align-items-center justify-content-between">
-                          <a class="small text-white stretched-link" href="">Start now</a>
+                          <a class="small text-white stretched-link" href="/quizes/dashboardQuiz">Start now</a>
                           <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                       </div>
                   </div>
@@ -41,31 +40,11 @@
             <!-- end quiz cards -->
           </div>
         </div>
-        <!-- start quiz -->
-        <div class="card mb-4" id="quizesContainer">
-          <div class="card-header">Quiz</div>
-          <div class="card-body">
-            <div class="quiz-container">
-              <div id="quiz"></div>
-            </div>
-            <button class="btn btn-primary btn-quiz" id="previous">Previous Question</button>
-            <button class="btn btn-primary btn-quiz" id="next">Next Question</button>
-            <button class="btn btn-primary btn-quiz" id="submit">Submit Quiz</button>
-            <div id="results"></div>
-            <div id="feedback"></div>
-            <div id="counter">
-              00:00
-          </div>
-          </div>
-        </div>
-        <!-- end quiz -->
       </div>
     </main>
     <%- include('./partials/footer.ejs'); %>
-</div>
+  </div>
 </div>
 <script src="/js/tipi.js"></script>
-<script src="/js/dashboardQuiz.js"></script>
-<script src="/js/counter.js"></script>
 <%- include('./partials/personalityModal.ejs'); %>
 </body>
