@@ -54,3 +54,7 @@ function startStopCounter() {
         status = 'stopped';
     }
 }
+
+function getQuizTime() {
+    return minutes;
+}

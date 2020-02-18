@@ -55,6 +55,8 @@
 		});
 		// add everything to page
 		quizContainer.innerHTML = output.join('');
+		// start timer
+		startStopCounter();
 	}
 
 	function createAnwersStore(cups) {
@@ -121,6 +123,9 @@
 				}
 			});
 
+			// stop timer
+			startStopCounter();
+
 			// show number of correct answers out of total and get feedback
 			const percent = (numCorrect / quiz.questions.length) * 100;
 			const rounded_number = Math.round(percent * 100) / 100;
@@ -134,6 +139,8 @@
 				rounded_number,
 				personalityData
 			);
+			// push results to mongo
+			pushResults(quiz._id, numCorrect, getQuizTime());
 			// disable buttons to prevent user navigation
 			$('#submit').prop('disabled', true);
 			$('#previous').prop('disabled', true);
@@ -240,6 +247,37 @@ function dropBallOnCup(ev) {
 	const ballElement = document.getElementById(ballId);
 	cup.appendChild(ballElement);
 }
+
+function pushResults(one, two, three) {
+console.log(one);	
+console.log(two);
+console.log(three);
+}
+// async function pushResults(score, ) {
+// 	const userId = event.target.dataset.userid;
+// 	const url = `/personality/${userId}`;
+// 	const personalityData = {
+// 		extraversion: 'n/a',
+// 		agreeableness: 'n/a',
+// 		conscientiousness: 'n/a',
+// 		emotionalStability: 'n/a',
+// 		opennessToExperience: 'n/a',
+// 	};
+// 	await fetch(url, {
+// 		method: 'PATCH',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 		},
+// 		body: JSON.stringify(personalityData),
+// 	})
+// 		.then(res => res.json())
+// 		.then(data => {
+// 			console.log('success', data);
+// 		})
+// 		.catch(err => {
+// 			console.log('error', err);
+// 		});
+// }
 
 // INCLUDE IN IMPLEMENTATION PROBLEMS
 
