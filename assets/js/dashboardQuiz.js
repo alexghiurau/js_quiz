@@ -141,6 +141,7 @@
 			);
 			// push results to mongo
 			pushResults(quiz._id, numCorrect, getQuizTime());
+
 			// disable buttons to prevent user navigation
 			$('#submit').prop('disabled', true);
 			$('#previous').prop('disabled', true);
@@ -248,36 +249,32 @@ function dropBallOnCup(ev) {
 	cup.appendChild(ballElement);
 }
 
-function pushResults(one, two, three) {
-console.log(one);	
-console.log(two);
-console.log(three);
+async function pushResults(quizId, score, time) {
+	const userId = await fetch('/api/user_data')
+			.then(res => res.json())
+			.then(data => data.id);
+	const url = `/results/postresult`;
+	const results = {
+		userId,
+		quizId,
+		score,
+		time,
+	};
+	await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(results),
+	})
+		.then(res => res.json())
+		.then(data => {
+			console.log('success', data);
+		})
+		.catch(err => {
+			console.log('error', err);
+		});
 }
-// async function pushResults(score, ) {
-// 	const userId = event.target.dataset.userid;
-// 	const url = `/personality/${userId}`;
-// 	const personalityData = {
-// 		extraversion: 'n/a',
-// 		agreeableness: 'n/a',
-// 		conscientiousness: 'n/a',
-// 		emotionalStability: 'n/a',
-// 		opennessToExperience: 'n/a',
-// 	};
-// 	await fetch(url, {
-// 		method: 'PATCH',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 		},
-// 		body: JSON.stringify(personalityData),
-// 	})
-// 		.then(res => res.json())
-// 		.then(data => {
-// 			console.log('success', data);
-// 		})
-// 		.catch(err => {
-// 			console.log('error', err);
-// 		});
-// }
 
 // INCLUDE IN IMPLEMENTATION PROBLEMS
 

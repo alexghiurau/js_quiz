@@ -65,6 +65,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/quizes', require('./routes/quizes'));
 app.use('/personality', require('./routes/personality'));
+app.use('/results', require('./routes/results'));
 
 // access id from cookie
 app.get('/api/user_data', (req, res) => {
