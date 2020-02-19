@@ -41,6 +41,14 @@ router.patch('/:id', getUser, async (req, res) => {
 	// }
 });
 
+/**
+ *
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
 async function getUser(req, res, next) {
 	let user;
 	try {

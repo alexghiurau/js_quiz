@@ -26,6 +26,11 @@
 
 const usersContainer = document.getElementById('user-list');
 
+/**
+ *
+ *
+ * @param {*} event
+ */
 async function resetPersonality(event) {
 	const userId = event.target.dataset.userid;
 	const url = `/personality/${userId}`;
@@ -52,6 +57,10 @@ async function resetPersonality(event) {
 		});
 }
 
+/**
+ *
+ *
+ */
 async function updateQuizes() {
 	await fetch('/quizes/postquizes', {
 		method: 'POST',

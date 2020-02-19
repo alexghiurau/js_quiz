@@ -13,6 +13,10 @@ let interval = null;
 // hold status of counter
 let status = 'stopped';
 
+/**
+ *
+ *
+ */
 function counter() {
     seconds++;
 
@@ -44,6 +48,10 @@ function counter() {
     document.getElementById('counter').innerHTML = displayMinutes + ':' + displaySeconds;
 }
 
+/**
+ *
+ *
+ */
 function startStopCounter() {
     if (status === 'stopped') {
         // start counter
@@ -55,6 +63,11 @@ function startStopCounter() {
     }
 }
 
+/**
+ *
+ *
+ * @returns
+ */
 function getQuizTime() {
     return minutes;
 }

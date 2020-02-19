@@ -21,6 +21,10 @@ let userId;
 	}
 })();
 
+/**
+ *
+ *
+ */
 function handlePersonality() {
 	const personalityArr = [];
 
@@ -72,6 +76,11 @@ function handlePersonality() {
 	}
 }
 
+/**
+ *
+ *
+ * @param {*} arr
+ */
 function getTraits(arr) {
 	// create new container array
 	const traitsArr = [];
@@ -113,6 +122,11 @@ function flipScores(score) {
 	}
 }
 
+/**
+ *
+ *
+ * @param {*} traitsArr
+ */
 async function pushPersonality(traitsArr) {
 	const url = `/personality/${userId}`;
 	const personalityData = {

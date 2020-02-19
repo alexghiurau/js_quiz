@@ -25,6 +25,12 @@ const emSupStatements = {
 	],
 };
 
+/**
+ *
+ *
+ * @param {*} score
+ * @returns
+ */
 function handleScore(score) {
 	let roundedScore;
 
@@ -46,6 +52,13 @@ function handleScore(score) {
 	return roundedScore;
 }
 
+/**
+ *
+ *
+ * @param {*} score
+ * @param {*} personalityData
+ * @returns
+ */
 function getFeedback(score, personalityData) {
 	let slant;
 	let ES;
@@ -97,6 +110,12 @@ function getFeedback(score, personalityData) {
 	return createFeedbackArray(feedbackData);
 }
 
+/**
+ *
+ *
+ * @param {*} feedbackArr
+ * @returns
+ */
 function createFeedbackString(feedbackArr) {
 	const arrNoDuplicates = [...new Set(feedbackArr)];
 	let feedbackString = '';
@@ -106,6 +125,12 @@ function createFeedbackString(feedbackArr) {
 	return feedbackString;
 }
 
+/**
+ *
+ *
+ * @param {*} data
+ * @returns
+ */
 function createFeedbackArray(data) {
 	const feedbackArr = [];
 

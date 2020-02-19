@@ -7,6 +7,10 @@
 		.then(data => data)
 		.catch(err => console.log(err));
 
+	/**
+	 *
+	 *
+	 */
 	function buildQuiz() {
 		const output = [];
 
@@ -59,6 +63,12 @@
 		startStopCounter();
 	}
 
+	/**
+	 *
+	 *
+	 * @param {*} cups
+	 * @returns
+	 */
 	function createAnwersStore(cups) {
 		const answers = [];
 		for (let i = 0; i < cups.length; i++) {
@@ -79,6 +89,11 @@
 
 	// checks if current slide's cups have at least a ball in each
 	// prevents scoring algorithm from malfunctioning
+	/**
+	 *
+	 *
+	 * @returns
+	 */
 	function checkCurrentSlide() {
 		let check = true;
 		let incompleteCounter = 0;
@@ -102,6 +117,10 @@
 	}
 
 	// shows results when Submit is clicked
+	/**
+	 *
+	 *
+	 */
 	async function showResults() {
 		const check = checkCurrentSlide();
 		if (!check) {
@@ -148,6 +167,11 @@
 		}
 	}
 
+	/**
+	 *
+	 *
+	 * @returns
+	 */
 	async function getPersonalityData() {
 		// get userId or current user
 		const userId = await fetch('/api/user_data')
@@ -163,6 +187,11 @@
 	}
 
 	// shows a slide with a question from the set
+	/**
+	 *
+	 *
+	 * @param {*} n
+	 */
 	function showSlide(n) {
 		slides[currentSlide].classList.remove('active-slide');
 		slides[n].classList.add('active-slide');
@@ -183,6 +212,10 @@
 		}
 	}
 
+	/**
+	 *
+	 *
+	 */
 	function showNextSlide() {
 		const check = checkCurrentSlide();
 		if (!check) {
@@ -249,6 +282,13 @@ function dropBallOnCup(ev) {
 	cup.appendChild(ballElement);
 }
 
+/**
+ *
+ *
+ * @param {*} quizId
+ * @param {*} score
+ * @param {*} time
+ */
 async function pushResults(quizId, score, time) {
 	const userId = await fetch('/api/user_data')
 			.then(res => res.json())
