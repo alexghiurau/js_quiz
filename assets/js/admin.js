@@ -73,7 +73,7 @@ async function updateQuizes() {
     $("#btn-quizes").html("Updated");
     setTimeout(() => {
       $("#btn-quizes").html("Update Quizes");
-    }, 4000);
+    }, 5000);
   } catch (error) {
     console.log(error);
   }
