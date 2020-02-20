@@ -1,4 +1,4 @@
-// Emotional Support Algorithm 1 - Revision 0.0.2
+// Emotional Support Algorithm 1 - Revision 0.0.7
 // Returns:
 // Score   - score student got in their test (0-100)
 // emStab  - emotional stability (low/high)
@@ -28,8 +28,8 @@ const emSupStatements = {
 /**
  *
  *
- * @param {*} score
- * @returns
+ * @param {Number} score - The score the learner achieved
+ * @returns {Number} roundedScore - Rounded score to be used by algorithm
  */
 function handleScore(score) {
 	let roundedScore;
@@ -55,9 +55,9 @@ function handleScore(score) {
 /**
  *
  *
- * @param {*} score
- * @param {*} personalityData
- * @returns
+ * @param {Number} score - Score learner achieved
+ * @param {Object} personalityData - Learner personality data
+ * @returns {Object} feedbackData - Object containing feedback statement and slant
  */
 function getFeedback(score, personalityData) {
 	let slant;
@@ -113,8 +113,8 @@ function getFeedback(score, personalityData) {
 /**
  *
  *
- * @param {*} feedbackArr
- * @returns
+ * @param {Array} feedbackArr - Array containing feedback statements
+ * @returns {String} feedbackString - feedback string to be displayed on page
  */
 function createFeedbackString(feedbackArr) {
 	const arrNoDuplicates = [...new Set(feedbackArr)];
@@ -128,8 +128,8 @@ function createFeedbackString(feedbackArr) {
 /**
  *
  *
- * @param {*} data
- * @returns
+ * @param {Object} data - feedback data object
+ * @returns {Array} feedbackArr - array containing filtered statements
  */
 function createFeedbackArray(data) {
 	const feedbackArr = [];

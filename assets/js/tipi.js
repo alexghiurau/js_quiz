@@ -22,7 +22,8 @@ let userId;
 })();
 
 /**
- *
+ * If personality data not set, promt user to complete questionnaire.
+ * Handles quistionnaire form, requiring user to complete all fields.
  *
  */
 function handlePersonality() {
@@ -77,9 +78,9 @@ function handlePersonality() {
 }
 
 /**
+ * Converts the raw data provided by learner into traits numbers
  *
- *
- * @param {*} arr
+ * @param {Array} arr - array of personality data
  */
 function getTraits(arr) {
 	// create new container array
@@ -103,6 +104,12 @@ function getTraits(arr) {
 	pushPersonality(traitsArr);
 }
 
+/**
+ * Flips scores, used by the TIPI formula
+ *
+ * @param {Number} score - the score the learner achieved
+ * @returns {Number} score - returns flipped number
+ */
 function flipScores(score) {
 	switch (score) {
 		case 1:
@@ -123,9 +130,9 @@ function flipScores(score) {
 }
 
 /**
+ * Pushes parsonality data to Mongo into the learner's document
  *
- *
- * @param {*} traitsArr
+ * @param {Array} traitsArr - Array containing traits data
  */
 async function pushPersonality(traitsArr) {
 	const url = `/personality/${userId}`;

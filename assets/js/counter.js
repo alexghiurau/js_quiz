@@ -14,7 +14,9 @@ let interval = null;
 let status = 'stopped';
 
 /**
- *
+ * Function that starts a simple counter to measure time
+ * learner took to complete quiz. Only seconds/minutes are
+ * monitored.
  *
  */
 function counter() {
@@ -49,7 +51,7 @@ function counter() {
 }
 
 /**
- *
+ * Either start or stop the counter.
  *
  */
 function startStopCounter() {
@@ -64,9 +66,9 @@ function startStopCounter() {
 }
 
 /**
+ * Gets the number of minutes the learner took to complete a quiz.
  *
- *
- * @returns
+ * @returns {Number} minutes - Number of minutes learner took
  */
 function getQuizTime() {
     return minutes;

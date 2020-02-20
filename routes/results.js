@@ -4,20 +4,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const Result = require('../models/Result');
 
-// router.get('/:difficulty', async (req, res) => {
-// 	try {
-// 		const quizes = await Quiz.findOne({ difficulty: req.params.difficulty });
-// 		res.json(quizes);
-// 	} catch (error) {
-// 		res.status(500).json({ message: error.message });
-// 	}
-// });
-
-router.get('/', (req, res) => {
-	res.status(200);
-	res.send('get werks');
-});
-
+// posts results to mongo
 router.post('/postresult', (req, res) => {
 	try {
 		const { userId, quizId, score, time } = req.body;

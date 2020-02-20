@@ -1,14 +1,13 @@
 (async function() {
-	// get a quiz (static for now)
-	const difficulty = 'easy';
-	const url = `/quizes/${difficulty}`;
+	// get a random quiz
+	const url = `/quizes`;
 	const quiz = await fetch(url)
 		.then(res => res.json())
 		.then(data => data)
 		.catch(err => console.log(err));
 
 	/**
-	 *
+	 * Builds quiz elements using the Quiz object from above.
 	 *
 	 */
 	function buildQuiz() {
@@ -59,15 +58,16 @@
 		});
 		// add everything to page
 		quizContainer.innerHTML = output.join('');
-		// start timer
+		// start the timer
 		startStopCounter();
 	}
 
 	/**
+	 * Creates temporary table to store answers. Used for checking if
+	 * correct.
 	 *
-	 *
-	 * @param {*} cups
-	 * @returns
+	 * @param {Array} cups - an array of cups
+	 * @returns {Array} answers - an array of answers
 	 */
 	function createAnwersStore(cups) {
 		const answers = [];
@@ -87,12 +87,12 @@
 		return answers;
 	}
 
-	// checks if current slide's cups have at least a ball in each
-	// prevents scoring algorithm from malfunctioning
 	/**
+	 * Check if current slide's cups have at least one ball inside.
+	 * Needed for calculations.
 	 *
-	 *
-	 * @returns
+	 * @returns {Boolean} check - returns true if all cups have at least
+	 * one ball inside.
 	 */
 	function checkCurrentSlide() {
 		let check = true;
@@ -116,9 +116,8 @@
 		return check;
 	}
 
-	// shows results when Submit is clicked
 	/**
-	 *
+	 * Shows results when 'Submit'
 	 *
 	 */
 	async function showResults() {
@@ -142,7 +141,7 @@
 				}
 			});
 
-			// stop timer
+			// stop the timer
 			startStopCounter();
 
 			// show number of correct answers out of total and get feedback
@@ -168,9 +167,9 @@
 	}
 
 	/**
+	 * Gets personality data for current user from Mongo
 	 *
-	 *
-	 * @returns
+	 * @returns {Object} personality - personality data needed by algorithm.
 	 */
 	async function getPersonalityData() {
 		// get userId or current user
@@ -186,11 +185,10 @@
 		return personalityData;
 	}
 
-	// shows a slide with a question from the set
 	/**
+	 * Shows a slide with a question from the set
 	 *
-	 *
-	 * @param {*} n
+	 * @param {Number} n - Index for slide to be shown
 	 */
 	function showSlide(n) {
 		slides[currentSlide].classList.remove('active-slide');
@@ -213,7 +211,7 @@
 	}
 
 	/**
-	 *
+	 * Shows the next slide (and next question) in the set.
 	 *
 	 */
 	function showNextSlide() {
@@ -225,6 +223,10 @@
 		}
 	}
 
+	/**
+	 * Shows the previous slide (and previous question) in the set.
+	 *
+	 */
 	function showPreviousSlide() {
 		showSlide(currentSlide - 1);
 	}
@@ -260,7 +262,11 @@
 //   sessionStorage.setItem('consci', consci);
 // }
 
-// allow dropping onto elements
+/**
+ * Allow dropping onto elements
+ *
+ * @param {*} ev - event
+ */
 function allowDrop(ev) {
 	ev.preventDefault();
 	if (ev.target.getAttribute('draggable') == 'true') {
@@ -268,12 +274,20 @@ function allowDrop(ev) {
 	} else ev.dataTransfer.dropEffect = 'all';
 }
 
-// allow dragging a ball, getting its id
+/**
+ * Allow dragging a ball, and get its id
+ *
+ * @param {*} ev - event
+ */
 function dragBall(ev) {
 	ev.dataTransfer.setData('ballId', ev.target.id);
 }
 
-// allow dropping a ball onto a cup element
+/**
+ * Allow dropping a ball onto cup element.
+ *
+ * @param {*} ev - event
+ */
 function dropBallOnCup(ev) {
 	ev.preventDefault();
 	const ballId = ev.dataTransfer.getData('ballId');
@@ -283,11 +297,11 @@ function dropBallOnCup(ev) {
 }
 
 /**
+ * Pushes results to Mongo in the collection 'results'
  *
- *
- * @param {*} quizId
- * @param {*} score
- * @param {*} time
+ * @param {String} quizId - The _id of the quiz
+ * @param {Number} score - Score the learner achieved
+ * @param {Number} time - Minutes the student took
  */
 async function pushResults(quizId, score, time) {
 	const userId = await fetch('/api/user_data')

@@ -9,7 +9,7 @@
           <div class="card-body">
             <p>Use this section to update the quizes using the quizes.json file. Clicking the button below will replicate
               everything that's on the json file. Make sure json formatting is correct.</p>
-            <button class="btn btn-lg btn-success" onclick="updateQuizes()">Update Quizes</button>
+            <button class="btn btn-lg btn-success" id="btn-quizes" onclick="updateQuizes()">Update Quizes</button>
           </div>
         </div>
 
@@ -25,19 +25,5 @@
     <%- include('./partials/footer.ejs'); %>
   </div>
   </div>
-<!-- start modal -->
-<!-- needs to be fixed -->
-  <div class="toast" id="updateQuizToast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <strong class="mr-auto">poopie</strong>
-      <small class="text-muted">Just now</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      test fam.
-    </div>
-  </div>
-<!-- end modal -->
+
   <script src="/js/admin.js"></script>  
