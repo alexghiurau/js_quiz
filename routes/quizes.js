@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
-const { ensureAuthenticated } = require("../config/auth");
-const Quiz = require("../models/Quiz");
+const { ensureAuthenticated } = require('../config/auth');
+const Quiz = require('../models/Quiz');
 
-router.get("/dashboardQuiz", ensureAuthenticated, (req, res) => {
-  const name = req.user.name;
-  res.render("dashboardQuiz", { name });
+router.get('/dashboardQuiz', ensureAuthenticated, (req, res) => {
+  const {name} = req.user;
+  res.render('dashboardQuiz', { name });
 });
 
 // router.get('/:difficulty', async (req, res) => {
@@ -18,7 +18,7 @@ router.get("/dashboardQuiz", ensureAuthenticated, (req, res) => {
 // 	}
 // });
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const quiz = await Quiz.random();
     res.json(quiz);
@@ -27,16 +27,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/postquizes", async (req, res) => {
+router.post('/postquizes', async (req, res) => {
   try {
     Quiz.deleteMany({}, (err, data) => {
-      console.log("cleared quiz collection");
+      console.log('cleared quiz collection');
     });
-    const quizes = require("../quizes/quizes.json");
+    const quizes = require('../quizes/quizes.json');
     quizes.forEach(quiz => {
-      let newQuiz = new Quiz({
+      const newQuiz = new Quiz({
         difficulty: quiz.difficulty,
-        questions: quiz.questions
+        questions: quiz.questions,
       });
       newQuiz.save().then(data => data);
     });

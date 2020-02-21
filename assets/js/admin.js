@@ -1,5 +1,7 @@
+const usersContainer = document.getElementById('user-list');
+
 (async () => {
-  const users = await fetch("/users/learners")
+  const users = await fetch('/users/learners')
     .then(res => res.json())
     .then(data => data);
 
@@ -20,11 +22,9 @@
             </div>
           </div></div>`
     );
-    usersContainer.innerHTML = output.join("");
+    usersContainer.innerHTML = output.join('');
   });
 })();
-
-const usersContainer = document.getElementById("user-list");
 
 /**
  * Resets personality for a given learner. This will promt them
@@ -36,25 +36,25 @@ async function resetPersonality(event) {
   const userId = event.target.dataset.userid;
   const url = `/personality/${userId}`;
   const personalityData = {
-    extraversion: "n/a",
-    agreeableness: "n/a",
-    conscientiousness: "n/a",
-    emotionalStability: "n/a",
-    opennessToExperience: "n/a"
+    extraversion: 'n/a',
+    agreeableness: 'n/a',
+    conscientiousness: 'n/a',
+    emotionalStability: 'n/a',
+    opennessToExperience: 'n/a',
   };
   await fetch(url, {
-    method: "PATCH",
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(personalityData)
+    body: JSON.stringify(personalityData),
   })
     .then(res => res.json())
     .then(data => {
-      console.log("success", data);
+      console.log('success', data);
     })
     .catch(err => {
-      console.log("error", err);
+      console.log('error', err);
     });
 }
 
@@ -64,15 +64,15 @@ async function resetPersonality(event) {
  */
 async function updateQuizes() {
   try {
-    await fetch("/quizes/postquizes", {
-      method: "POST",
+    await fetch('/quizes/postquizes', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
     }).catch(err => console.log(err));
-    $("#btn-quizes").html("Updated");
+    $('#btn-quizes').html('Updated');
     setTimeout(() => {
-      $("#btn-quizes").html("Update Quizes");
+      $('#btn-quizes').html('Update Quizes');
     }, 5000);
   } catch (error) {
     console.log(error);

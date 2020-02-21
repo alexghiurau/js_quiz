@@ -4,15 +4,15 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 // const { checkAdmin } = require('../config/auth');
 
-// welcome page
+// welcome page (login by default)
 router.get('/', (req, res) => res.render('login'));
 
 // dashboard
 router.get('/home', ensureAuthenticated, (req, res) => {
-	const name = req.user.name;
-	res.render(req.user.admin ? 'admin' : 'dashboard', {
-		name,
-	});
+  const { name } = req.user;
+  res.render(req.user.admin ? 'admin' : 'dashboard', {
+    name,
+  });
 });
 
 // admin dashboard
