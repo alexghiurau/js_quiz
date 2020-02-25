@@ -27,3 +27,7 @@ POST http://localhost:5000/quizes/postquizes
 ###
 
 GET http://localhost:5000/users/all
+
+###
+
+GET http://localhost:5000/results/5e4514e965c9a20788c811d1

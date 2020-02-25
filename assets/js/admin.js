@@ -17,7 +17,7 @@ const usersContainer = document.getElementById('user-list');
               <a class="card-text" href="mailto:${user.email}">
                   ${user.email}
               </p>
-              <a href="#" class="btn btn-primary btn-users btn-sm">View Past Results</a>
+              <a href="#" class="btn btn-primary btn-users btn-sm" data-userid="${user._id}" onClick=getLearnerResults(event)>View Past Results</a>
               <a href="#" class="btn btn-warning btn-users btn-sm" data-userid="${user._id}" onClick=resetPersonality(event)>Reset Personality</a>
             </div>
           </div></div>`
@@ -25,6 +25,37 @@ const usersContainer = document.getElementById('user-list');
     usersContainer.innerHTML = output.join('');
   });
 })();
+
+async function getLearnerResults(event) {
+  const userId = event.target.dataset.userid;
+
+  resultsModal = document.getElementById('resultsModalBody');
+
+  const output = [];
+
+  const url = `/results/${userId}`;
+
+  const results = await fetch(url)
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+  console.log(results);
+
+  results.forEach(result => {
+    output.push(
+      `<div>
+        <p>test</p>
+        <p>${result.score}</p>
+      </div>`
+    );
+  });
+
+  resultsModal.innerHTML = output.join('');
+
+  $('resultsModal').modal();
+  
+}
 
 /**
  * Resets personality for a given learner. This will promt them
@@ -69,7 +100,7 @@ async function updateQuizes() {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).catch(err => console.log(err));
+    });
     $('#btn-quizes').html('Updated');
     setTimeout(() => {
       $('#btn-quizes').html('Update Quizes');

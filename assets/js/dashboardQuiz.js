@@ -160,6 +160,7 @@
       );
 
       feedbackContainer.innerHTML = feedback;
+      
       // push results to mongo
       pushResults(quiz._id, rounded_number, feedback, getQuizTime());
 
