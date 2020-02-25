@@ -13,6 +13,10 @@ const resultSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  feedback: {
+    type: String,
+    required: true,
+  },
   time: {
     type: Number,
     required: true,

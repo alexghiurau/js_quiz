@@ -6,11 +6,12 @@ const Result = require('../models/Result');
 // posts results to mongo
 router.post('/postresult', (req, res) => {
   try {
-    const { userId, quizId, score, time } = req.body;
+    const { userId, quizId, score, feedback, time } = req.body;
     const newResult = new Result({
       userId,
       quizId,
       score,
+      feedback,
       time,
     });
     newResult.save();

@@ -153,12 +153,15 @@
       const personalityData = await getPersonalityData();
 
       // get feedback from alg1.js and put on page
-      feedbackContainer.innerHTML = getFeedback(
+
+      const feedback = getFeedback(
         rounded_number,
         personalityData
       );
+
+      feedbackContainer.innerHTML = feedback;
       // push results to mongo
-      pushResults(quiz._id, rounded_number, getQuizTime());
+      pushResults(quiz._id, rounded_number, feedback, getQuizTime());
 
       // disable buttons to prevent user navigation
       $('#submit').prop('disabled', true);
@@ -303,7 +306,7 @@ function dropBallOnCup(ev) {
  * @param {Number} score - Score the learner achieved
  * @param {Number} time - Minutes the student took
  */
-async function pushResults(quizId, score, time) {
+async function pushResults(quizId, score, feedback, time) {
   const userId = await fetch('/api/user_data')
     .then(res => res.json())
     .then(data => data.id);
@@ -312,6 +315,7 @@ async function pushResults(quizId, score, time) {
     userId,
     quizId,
     score,
+    feedback,
     time,
   };
   await fetch(url, {

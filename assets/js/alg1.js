@@ -26,7 +26,8 @@ const emSupStatements = {
 };
 
 /**
- *
+ * This functions rounds the learners score so that it can be used with
+ * the algorithm.
  *
  * @param {Number} score - The score the learner achieved
  * @returns {Number} roundedScore - Rounded score to be used by algorithm
@@ -53,7 +54,7 @@ function handleScore(score) {
 }
 
 /**
- *
+ * The algorithm - first rendition
  *
  * @param {Number} score - Score learner achieved
  * @param {Object} personalityData - Learner personality data
@@ -107,26 +108,16 @@ function getFeedback(score, personalityData) {
     ES,
     slant,
   };
-  return createFeedbackArray(feedbackData);
-}
 
-/**
- *
- *
- * @param {Array} feedbackArr - Array containing feedback statements
- * @returns {String} feedbackString - feedback string to be displayed on page
- */
-function createFeedbackString(feedbackArr) {
-  const arrNoDuplicates = [...new Set(feedbackArr)];
-  let feedbackString = '';
-  arrNoDuplicates.forEach(sentence => {
-    feedbackString += `${sentence} `;
-  });
+  const feedbackString = createFeedbackArray(feedbackData);
+  console.log(feedbackString);
+  console.log(typeof feedbackString);
+
   return feedbackString;
 }
 
 /**
- *
+ * Gets random statements and pushes them into array.
  *
  * @param {Object} data - feedback data object
  * @returns {Array} feedbackArr - array containing filtered statements
@@ -147,3 +138,21 @@ function createFeedbackArray(data) {
   });
   return createFeedbackString(feedbackArr);
 }
+
+/**
+ * Removes duplicates if present and converts feedback array to a human-readable 
+ * string.
+ *
+ * @param {Array} feedbackArr - Array containing feedback statements
+ * @returns {String} feedbackString - feedback string to be displayed on page
+ */
+function createFeedbackString(feedbackArr) {
+  const arrNoDuplicates = [...new Set(feedbackArr)];
+  let feedbackString = '';
+  arrNoDuplicates.forEach(sentence => {
+    feedbackString += `${sentence} `;
+  });
+  return feedbackString;
+}
+
+

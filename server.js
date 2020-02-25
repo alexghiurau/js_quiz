@@ -10,13 +10,13 @@ const app = express();
 // Passport config
 require('./config/passport')(passport);
 
-// DB Configuration
+// import db configuration
 const db = require('./config/keys').MongoURI;
 
 // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB Atlas.'))
+  .then(() => console.log('Connected to MongoDB.'))
   .catch(err => console.log(err));
 
 // server logging
@@ -29,11 +29,11 @@ app.use('/', (req, res, next) => {
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-// Body parser
+// Body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Static middleware TO DO
+// Static middleware
 app.use(express.static(`${__dirname}/assets`));
 
 // Express session
