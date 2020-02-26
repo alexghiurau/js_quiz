@@ -25,7 +25,7 @@ const quizSchema = new mongoose.Schema({
 
 // return a random document from Quiz collection
 quizSchema.statics.random = async function() {
-  const count = await this.count();
+  const count = await this.countDocuments();
   const rand = Math.floor(Math.random() * count);
   const randomDoc = await this.findOne().skip(rand);
   return randomDoc;
