@@ -138,7 +138,7 @@ function createFeedbackArray(data) {
 }
 
 /**
- * Removes duplicates if present and converts feedback array to a human-readable 
+ * Removes duplicates if present and converts feedback array to a human-readable
  * string.
  *
  * @param {Array} feedbackArr - Array containing feedback statements
@@ -152,5 +152,3 @@ function createFeedbackString(feedbackArr) {
   });
   return feedbackString;
 }
-
-

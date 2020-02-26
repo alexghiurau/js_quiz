@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) => {
   const userId = req.params.id;
   try {
     const results = await Result.find({ userId: userId });
-    res.json(results)
+    res.json(results);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

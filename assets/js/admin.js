@@ -26,6 +26,12 @@ const usersContainer = document.getElementById('user-list');
   });
 })();
 
+/**
+ * Function that gets a learner's results and displays
+ * a modal showing those.
+ *
+ * @param {*} event - used to get user id
+ */
 async function getLearnerResults(event) {
   const userId = event.target.dataset.userid;
 
@@ -41,9 +47,9 @@ async function getLearnerResults(event) {
     .catch(err => console.log(err));
 
   if (results.length > 0) {
-  results.forEach(result => {
-    output.push(
-      `<div class="card p-4 mb-4">
+    results.forEach(result => {
+      output.push(
+        `<div class="card p-4 mb-4">
         <h5>Quiz Date</h5>
         <p>${result.date}</p>
         <h5>Score</h5>
@@ -54,18 +60,15 @@ async function getLearnerResults(event) {
         <p>${result.time}</p>
       </div>
       `
-    );
-  });
-} else {
-  output.push(
-    `<p>Learner has no results on record.</p>`
-  )
-}
+      );
+    });
+  } else {
+    output.push(`<p>Learner has no results on record.</p>`);
+  }
 
   resultsModal.innerHTML = output.join('');
 
   $('#resultsModal').modal();
-  
 }
 
 /**
@@ -93,7 +96,7 @@ async function resetPersonality(event) {
   })
     .then(res => res.json())
     .then(data => {
-      window.alert('Personality successfully reset.')
+      window.alert('Personality successfully reset.');
     })
     .catch(err => {
       console.log('error', err);
@@ -118,6 +121,6 @@ async function updateQuizes() {
     }, 5000);
   } catch (error) {
     console.log(error);
-    window.alert('Error! Double-check quizes.json file.')
+    window.alert('Error! Double-check quizes.json file.');
   }
 }
