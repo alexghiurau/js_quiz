@@ -110,8 +110,6 @@ function getFeedback(score, personalityData) {
   };
 
   const feedbackString = createFeedbackArray(feedbackData);
-  console.log(feedbackString);
-  console.log(typeof feedbackString);
 
   return feedbackString;
 }

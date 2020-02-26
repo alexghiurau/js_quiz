@@ -40,20 +40,31 @@ async function getLearnerResults(event) {
     .then(data => data)
     .catch(err => console.log(err));
 
-  console.log(results);
-
+  if (results.length > 0) {
   results.forEach(result => {
     output.push(
-      `<div>
-        <p>test</p>
+      `<div class="card p-4 mb-4">
+        <h5>Quiz Date</h5>
+        <p>${result.date}</p>
+        <h5>Score</h5>
         <p>${result.score}</p>
-      </div>`
+        <h5>Feedback</h5>
+        <p>${result.feedback}</p>
+        <h5>Minutes Taken</h5>
+        <p>${result.time}</p>
+      </div>
+      `
     );
   });
+} else {
+  output.push(
+    `<p>Learner has no results on record.</p>`
+  )
+}
 
   resultsModal.innerHTML = output.join('');
 
-  $('resultsModal').modal();
+  $('#resultsModal').modal();
   
 }
 
@@ -82,7 +93,7 @@ async function resetPersonality(event) {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('success', data);
+      window.alert('Personality successfully reset.')
     })
     .catch(err => {
       console.log('error', err);
@@ -107,5 +118,6 @@ async function updateQuizes() {
     }, 5000);
   } catch (error) {
     console.log(error);
+    window.alert('Error! Double-check quizes.json file.')
   }
 }
