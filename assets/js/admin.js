@@ -50,14 +50,14 @@ async function getLearnerResults(event) {
     results.forEach(result => {
       output.push(
         `<div class="card p-4 mb-4">
-        <h5>Quiz Date</h5>
+        <h5>Quiz Date/Time</h5>
         <p>${result.date}</p>
         <h5>Score</h5>
-        <p>${result.score}</p>
+        <p>${result.score + '%'}</p>
         <h5>Feedback</h5>
         <p>${result.feedback}</p>
         <h5>Minutes Taken</h5>
-        <p>${result.time}</p>
+        <p>${result.time + 'minutes'}</p>
       </div>
       `
       );
