@@ -57,7 +57,7 @@ async function getLearnerResults(event) {
         <h5>Feedback</h5>
         <p>${result.feedback}</p>
         <h5>Minutes Taken</h5>
-        <p>${result.time + 'minutes'}</p>
+        <p>${result.time + ' minutes'}</p>
       </div>
       `
       );
