@@ -20,7 +20,8 @@ const usersContainer = document.getElementById('user-list');
               <a href="#" class="btn btn-primary btn-users btn-sm" data-userid="${user._id}" onClick=getLearnerResults(event)>View Past Results</a>
               <a href="#" class="btn btn-warning btn-users btn-sm" data-userid="${user._id}" onClick=resetPersonality(event)>Reset Personality</a>
             </div>
-          </div></div>`
+          </div></div>
+          `
     );
     usersContainer.innerHTML = output.join('');
   });
