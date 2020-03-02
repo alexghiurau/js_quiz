@@ -36,7 +36,7 @@ const usersContainer = document.getElementById('user-list');
 async function getLearnerResults(event) {
   const userId = event.target.dataset.userid;
 
-  resultsModal = document.getElementById('resultsModalBody');
+  const resultsModal = document.getElementById('resultsModalBody');
 
   const output = [];
 
