@@ -58,7 +58,7 @@ async function getLearnerResults(event) {
         <h5>Feedback</h5>
         <p>${result.feedback}</p>
         <h5>Minutes Taken</h5>
-        <p>${result.time + (result.time > 1 ? ' minutes' : ' minute')}</p>
+        <p>${result.time + (result.time === 1 ? ' minute' : ' minutes')}</p>
       </div>
       `
       );

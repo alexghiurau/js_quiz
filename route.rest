@@ -22,6 +22,10 @@ GET http://localhost:5000/quizes/
 
 ###
 
+GET http://localhost:5000/quizes/5e56e2782dd50206e8799f44
+
+###
+
 POST http://localhost:5000/quizes/postquizes
 
 ###

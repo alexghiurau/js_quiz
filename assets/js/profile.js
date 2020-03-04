@@ -26,11 +26,7 @@ const profileQuizes = document.getElementById('profileQuizes');
             <h5>Feedback</h5>
             <p>${result.feedback}</p>
             <h5>Minutes Taken</h5>
-            <p>${result.time + (result.time > 1 ? ' minutes' : ' minute')}</p>
-            </br>
-            <button class="btn btn-primary" data-quizId=${
-              result.quizId
-            }>Retry Quiz</button>
+            <p>${result.time + (result.time === 1 ? ' minute' : ' minutes')}</p>
           </div>
           `
       );
@@ -41,11 +37,3 @@ const profileQuizes = document.getElementById('profileQuizes');
 
   profileQuizes.innerHTML = output.join('');
 })();
-
-// function retakeQuiz(quizId) {
-//     const url = `/quizes/${quizId}`;
-
-//     await fetch(url)
-//         .then(res => res.json())
-//         .then(data => data);
-// }

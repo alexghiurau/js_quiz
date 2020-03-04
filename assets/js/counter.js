@@ -20,35 +20,35 @@ let status = 'stopped';
  *
  */
 function counter() {
-  seconds++;
+	seconds++;
 
-  // when to increment next value
-  if (seconds / 60 === 1) {
-    seconds = 0;
-    minutes++;
+	// when to increment next value
+	if (seconds / 60 === 1) {
+		seconds = 0;
+		minutes++;
 
-    if (minutes / 60 === 1) {
-      minutes = 0;
-      minutes++;
-    }
-  }
+		if (minutes / 60 === 1) {
+			minutes = 0;
+			minutes++;
+		}
+	}
 
-  // handle single digit numbers
-  if (seconds < 10) {
-    displaySeconds = '0' + seconds.toString();
-  } else {
-    displaySeconds = seconds;
-  }
+	// handle single digit numbers
+	if (seconds < 10) {
+		displaySeconds = '0' + seconds.toString();
+	} else {
+		displaySeconds = seconds;
+	}
 
-  if (minutes < 10) {
-    displayMinutes = '0' + minutes.toString();
-  } else {
-    displayMinutes = minutes;
-  }
+	if (minutes < 10) {
+		displayMinutes = '0' + minutes.toString();
+	} else {
+		displayMinutes = minutes;
+	}
 
-  // display updated time on page
-  document.getElementById('counter').innerHTML =
-    displayMinutes + ':' + displaySeconds;
+	// display updated time on page
+	document.getElementById('counter').innerHTML =
+		displayMinutes + ':' + displaySeconds;
 }
 
 /**
@@ -56,14 +56,14 @@ function counter() {
  *
  */
 function startStopCounter() {
-  if (status === 'stopped') {
-    // start counter
-    interval = window.setInterval(counter, 1000);
-    status = 'counting';
-  } else {
-    window.clearInterval(interval);
-    status = 'stopped';
-  }
+	if (status === 'stopped') {
+		// start counter
+		interval = window.setInterval(counter, 1000);
+		status = 'counting';
+	} else {
+		window.clearInterval(interval);
+		status = 'stopped';
+	}
 }
 
 /**
@@ -72,5 +72,5 @@ function startStopCounter() {
  * @returns {Number} minutes - Number of minutes learner took
  */
 function getQuizTime() {
-  return minutes;
+	return minutes;
 }

@@ -9,18 +9,18 @@ router.get('/', (req, res) => res.render('login'));
 
 // dashboard
 router.get('/home', ensureAuthenticated, (req, res) => {
-  const { name } = req.user;
-  res.render(req.user.admin ? 'admin' : 'dashboard', {
-    name,
-  });
+	const { name } = req.user;
+	res.render(req.user.admin ? 'admin' : 'dashboard', {
+		name,
+	});
 });
 
 // profile page
 router.get('/profile', ensureAuthenticated, (req, res) => {
-  const { name } = req.user;
-  res.render(req.user.admin ? 'admin' : 'profile', {
-    name,
-  });
+	const { name } = req.user;
+	res.render(req.user.admin ? 'admin' : 'profile', {
+		name,
+	});
 });
 
 // admin dashboard

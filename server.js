@@ -15,14 +15,14 @@ const db = require('./config/keys').MongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB.'))
-  .catch(err => console.log(err));
+	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(() => console.log('Connected to MongoDB.'))
+	.catch(err => console.log(err));
 
 // server logging
 app.use('/', (req, res, next) => {
-  console.log(new Date(), req.method, req.url);
-  next();
+	console.log(new Date(), req.method, req.url);
+	next();
 });
 
 // EJS
@@ -38,11 +38,11 @@ app.use(express.static(`${__dirname}/assets`));
 
 // Express session
 app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true,
-  })
+	session({
+		secret: 'secret',
+		resave: true,
+		saveUninitialized: true,
+	})
 );
 
 // passport middleware
@@ -54,10 +54,10 @@ app.use(flash());
 
 // Globals
 app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.error = req.flash('error');
+	next();
 });
 
 // Routes
@@ -69,25 +69,25 @@ app.use('/results', require('./routes/results'));
 
 // access id from cookie
 app.get('/api/user_data', (req, res) => {
-  if (req.user === undefined) {
-    // The user is not logged in
-    res.status(404).json({ message: 'user not logged in' });
-  } else {
-    res.json({
-      id: req.user.id,
-    });
-  }
+	if (req.user === undefined) {
+		// The user is not logged in
+		res.status(404).json({ message: 'user not logged in' });
+	} else {
+		res.json({
+			id: req.user.id,
+		});
+	}
 });
 
 // Declare port and start server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, err => {
-  if (err) {
-    console.log('Error starting server.', err);
-  } else {
-    console.log(`Server running on port ${PORT}.`);
-  }
+	if (err) {
+		console.log('Error starting server.', err);
+	} else {
+		console.log(`Server running on port ${PORT}.`);
+	}
 });
 
 // MENTION WHY I DIDNT USE THIS AND USED INLINE
@@ -99,6 +99,6 @@ app.listen(PORT, err => {
  * @param {*} err
  */
 function error(res, err) {
-  res.sendStatus(500);
-  console.error(err);
+	res.sendStatus(500);
+	console.error(err);
 }

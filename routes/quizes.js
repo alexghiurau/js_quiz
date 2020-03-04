@@ -18,6 +18,8 @@ router.get('/dashboardQuiz', ensureAuthenticated, (req, res) => {
 // 	}
 // });
 
+// gets single random quiz
+
 router.get('/', async (req, res) => {
 	try {
 		const quiz = await Quiz.random();
@@ -26,6 +28,20 @@ router.get('/', async (req, res) => {
 		res.status(500).json({ message: error.message });
 	}
 });
+
+// gets a specific quiz
+
+router.get('/:id', async (req, res) => {
+	const quizId = req.params.id;
+	try {
+		const quiz = await Quiz.findById(quizId);
+		res.json(quiz);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
+
+// posts quizes from quizes.json file
 
 router.post('/postquizes', async (req, res) => {
 	try {
