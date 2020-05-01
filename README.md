@@ -28,6 +28,7 @@ Alternatively, for a local instance you will first need to install MongoDB.
 ## Credits
 
 Alex Ghiurau - Development.
+
 Dr. Matt Dennis - Development of feedback algorithm.
 
 ## License
