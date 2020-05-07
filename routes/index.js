@@ -23,9 +23,4 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
 	});
 });
 
-// admin dashboard
-// router.get('/admin', ensureAuthenticated, checkAdmin, (req, res) => res.render('admin', {
-//   name: req.user.name,
-// }));
-
 module.exports = router;

@@ -4,8 +4,6 @@ const router = express.Router();
 const User = require('../models/User');
 
 // get personality from mongodb (user collection)
-// COMMENTED: SECURITY - MENTION IN DOC AND ENABLE
-// WHEN DEPLOYING. POTENTIALLY MOVE TO getUser()
 
 /**
  *

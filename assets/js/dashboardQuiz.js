@@ -254,16 +254,6 @@
 	nextButton.addEventListener('click', showNextSlide);
 })();
 
-// MENTION IN IMPLEMENTATION ALSO
-
-// function handlePersonality() {
-//   const emStab = $('#emStabCombo :selected').val();
-//   const consci = $('#consciCombo :selected').val();
-
-//   sessionStorage.setItem('emStab', emStab);
-//   sessionStorage.setItem('consci', consci);
-// }
-
 /**
  * Allow dropping onto elements
  *
@@ -332,19 +322,3 @@ async function pushResults(quizId, score, feedback, time) {
 			console.log('error', err);
 		});
 }
-
-// INCLUDE IN IMPLEMENTATION PROBLEMS
-
-// async function getData(url) {
-//   const response = await fetch(url);
-//   return response.json();
-// }
-
-// async function main() {
-//   const url = '/questions';
-//   const data = await getData(url)
-//   data.then(retVal => {
-//     return retVal;
-//   });
-
-// }

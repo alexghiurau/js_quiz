@@ -9,15 +9,6 @@ router.get('/dashboardQuiz', ensureAuthenticated, (req, res) => {
 	res.render('dashboardQuiz', { name });
 });
 
-// router.get('/:difficulty', async (req, res) => {
-// 	try {
-// 		const quizes = await Quiz.findOne({ difficulty: req.params.difficulty });
-// 		res.json(quizes);
-// 	} catch (error) {
-// 		res.status(500).json({ message: error.message });
-// 	}
-// });
-
 // gets single random quiz
 
 router.get('/', async (req, res) => {
