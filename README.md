@@ -12,6 +12,10 @@ Alternatively, for a local instance you will first need to install MongoDB.
 2. Run `npm install`.
 3. If needed, change mongo config file to point to your local MongoDB instance.
 
+## Test Accounts
+1. Learner account - e: a@b.c | p: 123456
+2. Admin account   - e: a@a.a | p: 123456
+
 ## Usage
 
 1. Log in.
