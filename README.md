@@ -25,6 +25,7 @@ Admin account
 
 1. Log in.
 2. Either partake in quizzes, or if logged in as an admin, manage users and see past quizzes.
+3. When editing quizzes, you must update the quizzes.JSON file on the server.
 
 ## Contributing
 
