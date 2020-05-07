@@ -14,11 +14,12 @@ Alternatively, for a local instance you will first need to install MongoDB.
 
 ## Test Accounts
 Learner account
-*Email: a@b.c
-*Password: 123456
+* Email: a@b.c
+* Password: 123456
+
 Admin account
-Email: a@a.a
-Password: 123456
+* Email: a@a.a
+* Password: 123456
 
 ## Usage
 
