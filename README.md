@@ -13,8 +13,12 @@ Alternatively, for a local instance you will first need to install MongoDB.
 3. If needed, change mongo config file to point to your local MongoDB instance.
 
 ## Test Accounts
-1. Learner account - e: a@b.c | p: 123456
-2. Admin account   - e: a@a.a | p: 123456
+Learner account
+*Email: a@b.c
+*Password: 123456
+Admin account
+Email: a@a.a
+Password: 123456
 
 ## Usage
 
